@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tejas Sachdeva | Portfolio</title>
+  <meta name="description" content="Mechanical Engineering portfolio focusing on product design, FEA, thermal, and manufacturing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e0f12;         /* deep charcoal */
+      --text:#f2f3f7;       /* near-white */
+      --muted:#a3a7b3;      /* soft gray */
+      --accent:#7dd3fc;     /* sky */
+      --accent-2:#fca5a5;   /* soft red */
+      --card:#151821;       /* card bg */
+      --ring:#2a2f3a;       /* subtle borders */
+      --link:#c4b5fd;       /* violet */
+      --focus: 0 0 0 3px rgba(125, 211, 252, .5);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text); background:linear-gradient(180deg, #0b0c0f, #0e0f12 30%);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    a{color:var(--link); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(12px);
+      background:rgba(13,15,20,.65); border-bottom:1px solid var(--ring);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; min-height:64px}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .brand__logo{
+      width:36px; height:36px; border-radius:9999px; background:radial-gradient(60% 60% at 30% 30%, #7dd3fc, #60a5fa 60%, #1e293b);
+      box-shadow:0 8px 20px rgba(96,165,250,.25);
+    }
+    .brand__name{font-weight:800; letter-spacing:.5px}
+    .nav__links{display:flex; gap:1rem}
+    .nav__links a{padding:.5rem .75rem; border-radius:999px; color:var(--text)}
+    .nav__links a[aria-current="page"], .nav__links a:hover{
+      background:rgba(125,211,252,.12); outline: none;
+    }
+
+    /* Hero */
+    .hero{padding:72px 0 28px}
+    .hero h1{
+      font-family:"Playfair Display", serif; font-size:clamp(32px, 5vw, 54px); margin:.25rem 0;
+      letter-spacing:.3px;
+    }
+    .hero p{color:var(--muted); font-size:clamp(15px, 2.2vw, 18px); line-height:1.6; max-width:800px}
+    .chipbar{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:16px}
+    .chip{border:1px solid var(--ring); background:rgba(255,255,255,.03); padding:.35rem .6rem; border-radius:999px; font-size:12px; color:var(--muted)}
+
+    /* Filters */
+    .filters{display:flex; flex-wrap:wrap; gap:.5rem; margin:18px 0 6px}
+    .filter{padding:.45rem .75rem; border-radius:999px; border:1px solid var(--ring); background:rgba(255,255,255,.02); color:var(--muted); cursor:pointer; user-select:none}
+    .filter[aria-pressed="true"]{background:rgba(125,211,252,.12); color:var(--text); border-color:rgba(125,211,252,.4)}
+
+    /* Grid */
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap:18px; margin:18px 0 80px}
+    .card{grid-column:span 12; background:var(--card); border:1px solid var(--ring); border-radius:18px; overflow:hidden; position:relative; box-shadow:0 10px 35px rgba(0,0,0,.25)}
+    .card[data-size="m"]{grid-column:span 6}
+    .card[data-size="l"]{grid-column:span 8}
+    .card[data-size="s"]{grid-column:span 4}
+    @media (max-width: 980px){ .card, .card[data-size="m"], .card[data-size="l"], .card[data-size="s"]{grid-column:span 12} }
+
+    .thumb{position:relative; aspect-ratio: 16/10; background:#0b0c12; display:block}
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block; opacity:.95; filter:saturate(1.05) contrast(1.02)}
+    .badge{position:absolute; top:12px; left:12px; background:rgba(13,18,26,.7); border:1px solid var(--ring); color:var(--text); font-size:12px; padding:.25rem .55rem; border-radius:999px}
+
+    .card-body{padding:16px 16px 18px}
+    .title{font-weight:700; letter-spacing:.2px; margin:4px 0}
+    .meta{display:flex; flex-wrap:wrap; gap:.35rem .6rem; margin-top:6px}
+    .meta .tag{font-size:12px; color:var(--muted); border:1px dashed var(--ring); padding:.2rem .45rem; border-radius:999px}
+
+    /* Hover overlay */
+    .overlay{position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(to top, rgba(10,12,18,.85), rgba(10,12,18,.35)); color:#e6f6ff; opacity:0; transition:opacity .25s ease}
+    .card:focus-within .overlay, .card:hover .overlay{opacity:1}
+    .overlay__content{padding:16px; text-align:center}
+    .overlay__content p{margin:.25rem 0 .6rem; color:#d7eafe}
+    .btn{display:inline-block; padding:.55rem .9rem; border-radius:10px; border:1px solid rgba(125,211,252,.6); background:rgba(125,211,252,.12); color:#e6f6ff; font-weight:600}
+    .btn:focus{outline: none; box-shadow:var(--focus)}
+
+    /* Modal */
+    dialog{width:min(900px, 96vw); border:1px solid var(--ring); background:var(--card); color:var(--text); border-radius:18px; padding:0; box-shadow:0 20px 80px rgba(0,0,0,.55)}
+    dialog::backdrop{background:rgba(3,7,18,.65)}
+    .modal__header{display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--ring)}
+    .modal__title{font-weight:800}
+    .modal__body{display:grid; gap:16px; padding:18px}
+    .modal__media{aspect-ratio:16/9; background:#0b0c12; border-radius:12px; overflow:hidden; border:1px solid var(--ring)}
+    .modal__media img, .modal__media video{width:100%; height:100%; display:block; object-fit:cover}
+    .modal__grid{display:grid; grid-template-columns: 1fr; gap:10px}
+    @media (min-width: 880px){ .modal__grid{grid-template-columns: 3fr 2fr; gap:18px} }
+    .kv{display:grid; grid-template-columns:max-content 1fr; gap:.4rem .8rem; font-size:14px; color:var(--muted)}
+    .kv div:nth-child(odd){color:#c9d1e4}
+
+    /* Footer */
+    footer{border-top:1px solid var(--ring); padding:36px 0; color:var(--muted)}
+    .footer__grid{display:grid; grid-template-columns:1fr auto; gap:10px}
+    @media (max-width:700px){ .footer__grid{grid-template-columns:1fr} }
+
+    /* Accessibility helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    :focus-visible{outline:none; box-shadow:var(--focus)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true"></div>
+        <a class="brand__name" href="#top" aria-label="Home">TEJAS SACHDEVA</a>
+      </div>
+      <nav class="nav__links">
+        <a href="#projects" aria-current="page">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero container" aria-labelledby="intro-title">
+      <h1 id="intro-title">Hi! I'm Tejas — I design and build hardware.</h1>
+      <p>
+        UT Austin Mechanical Engineering (’26). Focused on product design, validation, thermal & structural analysis, and manufacturing. I love turning ambiguous problems into manufacturable, reliable products.
+      </p>
+      <div class="chipbar" aria-label="Core skills">
+        <span class="chip">SolidWorks</span>
+        <span class="chip">ANSYS (CFD/FEA)</span>
+        <span class="chip">DFM/DFA</span>
+        <span class="chip">Thermal & Structural</span>
+        <span class="chip">Rapid Prototyping</span>
+        <span class="chip">Manufacturing Ops</span>
+      </div>
+
+      <div class="filters" role="toolbar" aria-label="Filter projects by tag">
+        <button class="filter" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" data-filter="product">Product Design</button>
+        <button class="filter" data-filter="fea">FEA</button>
+        <button class="filter" data-filter="thermal">Thermal</button>
+        <button class="filter" data-filter="manufacturing">Manufacturing</button>
+      </div>
+    </section>
+
+    <section id="projects" class="container" aria-labelledby="projects-title">
+      <h2 id="projects-title" class="sr-only">Projects</h2>
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+
+    <section id="resume" class="container" aria-labelledby="resume-title" style="margin: 30px 0 80px">
+      <h2 id="resume-title">Resume</h2>
+      <p>Download a PDF copy of my current resume <a href="resume.pdf" id="resumeLink" download>here</a>. (Replace this link with your actual resume URL.)</p>
+    </section>
+
+    <section id="about" class="container" aria-labelledby="about-title" style="margin: 0 0 80px">
+      <h2 id="about-title">About</h2>
+      <p>
+        I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.
+      </p>
+    </section>
+
+    <section id="contact" class="container" aria-labelledby="contact-title" style="margin: 0 0 80px">
+      <h2 id="contact-title">Contact</h2>
+      <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas@example.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank" rel="noopener">LinkedIn</a> · Austin, TX</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer__grid">
+      <div>© <span id="year"></span> Tejas Sachdeva. All rights reserved.</div>
+      <div>Built with accessible, lightweight HTML/CSS/JS.</div>
+    </div>
+  </footer>
+
+  <!-- Modal for dynamic project details -->
+  <dialog id="projectModal" aria-labelledby="modal-title">
+    <div class="modal__header">
+      <div class="modal__title" id="modal-title">Project Title</div>
+      <button id="modalClose" class="btn" aria-label="Close details">Close</button>
+    </div>
+    <div class="modal__body">
+      <div class="modal__grid">
+        <div>
+          <div class="modal__media" id="modalMedia" aria-label="Project media"><!-- media injected --></div>
+          <article id="modalDesc" style="margin-top:12px; line-height:1.6"></article>
+        </div>
+        <aside>
+          <div class="kv">
+            <div>Role</div><div id="kvRole">—</div>
+            <div>Tools</div><div id="kvTools">—</div>
+            <div>Impact</div><div id="kvImpact">—</div>
+            <div>Links</div><div id="kvLinks">—</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // ---- Editable project data (add/remove items here) ----
+    const projects = [
+      {
+        id: 'parker-wellbore',
+        title: 'Rig Structural Optimization',
+        subtitle: 'FEA | API/ASME | Impact Fatigue',
+        size: 'm',
+        badges: ['Product Development','FEA'],
+        tags: ['fea','manufacturing'],
+        img: 'https://images.unsplash.com/photo-1581092335507-5cf32f0c4903?q=80&w=1200&auto=format&fit=crop',
+        role: 'Mechanical Analyst',
+        tools: 'SolidWorks, Autodesk Mechanical, ANSYS (static, modal, fatigue)',
+        impact: 'Reduced Von Mises stress fluctuation by 65%; established Working Load Limits and safety factors.',
+        desc: `Analyzed Technical Service Reports for drill string mechanics, BOP systems, and annular lift-ring assemblies. Defined FEA parameters per API, ASME, and AISC standards; selected materials via Charpy V‑notch tests for impact scenarios.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1581091014534-8987c1d3d74d?q=80&w=1200&auto=format&fit=crop' },
+        links: [{label:'Report (PDF)', href:'#' }]
+      },
+      {
+        id: 'longhorn-battery-thermal',
+        title: 'Battery Manifold (Solar Vehicle)',
+        subtitle: 'Thermal | CFD | CAD Automation',
+        size: 'l',
+        badges: ['Thermal','Product Design'],
+        tags: ['thermal','product'],
+        img: 'https://images.unsplash.com/photo-1605901309584-818e25960a8b?q=80&w=1200&auto=format&fit=crop',
+        role: 'Thermal/CFD Engineer',
+        tools: 'ANSYS Fluent, SolidWorks, parametric CAD‑CFD loop',
+        impact: 'Optimized intake/exhaust manifold for pack thermal envelope; improved ΔT distribution across cells.',
+        desc: `Designed intake/exhaust manifold with parametric studies to limit cell temperature spread and pressure drop. Coupled CFD with CAD for automated sweeps and rapid iteration.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1617726080357-5f1f2b4ad3f8?q=80&w=1200&auto=format&fit=crop' },
+        links: [{label:'Slides', href:'#'}]
+      },
+      {
+        id: 'hyperloop-track',
+        title: 'Hyperloop Track & Buffer Stop',
+        subtitle: 'CAD | FEA | Manufacturing',
+        size: 's',
+        badges: ['Manufacturing'],
+        tags: ['manufacturing','product','fea'],
+        img: 'https://images.unsplash.com/photo-1538439907460-1596cafd4eff?q=80&w=1200&auto=format&fit=crop',
+        role: 'Design Engineer',
+        tools: 'SolidWorks, FEA (static/vibration), 3D printing, manual milling, lathe',
+        impact: 'Achieved target factor of safety while meeting inter-team geometric constraints.',
+        desc: `Designed track alignment and buffer stop mechanism, validated with static and vibrational analyses. Led fabrication using mixed processes and jigs for tolerance control.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop' }
+      },
+      {
+        id: 'assistive-makeup-brush',
+        title: 'Assistive Makeup Brush',
+        subtitle: 'Ergonomics | Prototyping',
+        size: 'm',
+        badges: ['Product Design'],
+        tags: ['product','manufacturing'],
+        img: 'https://images.unsplash.com/photo-1602143407151-7111542de6ca?q=80&w=1200&auto=format&fit=crop',
+        role: 'Product Designer',
+        tools: 'Ergonomic studies, SLA prototypes, silicone overmolding',
+        impact: 'Accessible for low‑grip‑strength users; improved torque control and comfort.',
+        desc: `Developed ergonomic handle geometry and interchangeable heads; iterated via user tests and low‑fi foam cores to SLA.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1610041516061-2a0b9afd1cd3?q=80&w=1200&auto=format&fit=crop' }
+      }
+    ];
+
+    // ---- Render helpers ----
+    const grid = document.getElementById('grid');
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.getElementById('modalClose');
+
+    function cardTemplate(p){
+      return `
+        <article class="card" data-size="${p.size}" data-tags="${p.tags.join(' ')}" tabindex="0" aria-labelledby="${p.id}-title">
+          <a class="thumb" href="#" data-open="${p.id}" aria-label="Open details for ${p.title}">
+            <img src="${p.img}" alt="${p.title} thumbnail" loading="lazy"/>
+            <span class="badge">${p.badges.join(' · ')}</span>
+            <div class="overlay" aria-hidden="true">
+              <div class="overlay__content">
+                <p>${p.subtitle}</p>
+                <span class="btn">Learn more</span>
+              </div>
+            </div>
+          </a>
+          <div class="card-body">
+            <div class="title" id="${p.id}-title">${p.title}</div>
+            <div class="meta">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          </div>
+        </article>`
+    }
+
+    function render(list){
+      grid.innerHTML = list.map(cardTemplate).join('');
+      grid.querySelectorAll('[data-open]').forEach(a=>{
+        a.addEventListener('click', (e)=>{ e.preventDefault(); openModal(a.dataset.open) })
+      })
+    }
+
+    function openModal(id){
+      const p = projects.find(x=>x.id===id);
+      if(!p) return;
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modalDesc').textContent = p.desc;
+      document.getElementById('kvRole').textContent = p.role || '—';
+      document.getElementById('kvTools').textContent = p.tools || '—';
+      document.getElementById('kvImpact').textContent = p.impact || '—';
+      const links = (p.links||[]).map(l=>`<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join(' · ');
+      document.getElementById('kvLinks').innerHTML = links || '—';
+
+      const media = document.getElementById('modalMedia');
+      media.innerHTML = '';
+      if(p.media){
+        if(p.media.type === 'video'){
+          media.innerHTML = `<video src="${p.media.src}" controls playsinline></video>`;
+        } else {
+          media.innerHTML = `<img src="${p.media.src}" alt="${p.title} media" />`;
+        }
+      }
+      modal.showModal();
+    }
+
+    closeBtn.addEventListener('click', ()=> modal.close());
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.close(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.open) modal.close(); });
+
+    // Filters
+    const filterButtons = [...document.querySelectorAll('.filter')];
+    function applyFilter(tag){
+      const cards = [...document.querySelectorAll('.card')];
+      cards.forEach(card=>{
+        const show = tag==='all' || card.dataset.tags.includes(tag);
+        card.style.display = show ? '' : 'none';
+      })
+    }
+    filterButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filterButtons.forEach(b=>b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
+        applyFilter(btn.dataset.filter);
+      })
+    })
+
+    // Init
+    render(projects);
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
