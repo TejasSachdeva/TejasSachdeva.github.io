@@ -37,11 +37,7 @@
       background:rgba(13,15,20,.65); border-bottom:1px solid var(--ring);
     }
     .nav{display:flex; align-items:center; justify-content:space-between; min-height:64px}
-    .brand{display:flex; align-items:center; gap:.75rem}
-    .brand__logo{
-      width:36px; height:36px; border-radius:9999px; background:radial-gradient(60% 60% at 30% 30%, #7dd3fc, #60a5fa 60%, #1e293b);
-      box-shadow:0 8px 20px rgba(96,165,250,.25);
-    }
+    .brand{display:flex; align-items:center; gap:0}
     .brand__name{font-weight:800; letter-spacing:.5px}
     .nav__links{display:flex; gap:1rem}
     .nav__links a{padding:.5rem .75rem; border-radius:999px; color:var(--text)}
@@ -219,7 +215,7 @@
         role: 'Mechanical Analyst',
         tools: 'SolidWorks, Autodesk Mechanical, ANSYS (static, modal, fatigue)',
         impact: 'Reduced Von Mises stress fluctuation by 65%; established Working Load Limits and safety factors.',
-        desc: `Analyzed Technical Service Reports for drill string mechanics, BOP systems, and annular lift-ring assemblies. Defined FEA parameters per API, ASME, and AISC standards; selected materials via Charpy V‑notch tests for impact scenarios.`,
+        desc: `Analyzed Technical Service Reports for drill string mechanics, BOP systems, and annular lift-ring assemblies. Defined FEA parameters per API, ASME, and AISC standards; selected materials via Charpy V-notch tests for impact scenarios.`,
         media: { type:'image', src:'https://images.unsplash.com/photo-1581091014534-8987c1d3d74d?q=80&w=1200&auto=format&fit=crop' },
         links: [{label:'Report (PDF)', href:'#' }]
       },
@@ -232,7 +228,7 @@
         tags: ['thermal','product'],
         img: 'https://images.unsplash.com/photo-1605901309584-818e25960a8b?q=80&w=1200&auto=format&fit=crop',
         role: 'Thermal/CFD Engineer',
-        tools: 'ANSYS Fluent, SolidWorks, parametric CAD‑CFD loop',
+        tools: 'ANSYS Fluent, SolidWorks, parametric CAD-CFD loop',
         impact: 'Optimized intake/exhaust manifold for pack thermal envelope; improved ΔT distribution across cells.',
         desc: `Designed intake/exhaust manifold with parametric studies to limit cell temperature spread and pressure drop. Coupled CFD with CAD for automated sweeps and rapid iteration.`,
         media: { type:'image', src:'https://images.unsplash.com/photo-1617726080357-5f1f2b4ad3f8?q=80&w=1200&auto=format&fit=crop' },
@@ -262,8 +258,8 @@
         img: 'https://images.unsplash.com/photo-1602143407151-7111542de6ca?q=80&w=1200&auto=format&fit=crop',
         role: 'Product Designer',
         tools: 'Ergonomic studies, SLA prototypes, silicone overmolding',
-        impact: 'Accessible for low‑grip‑strength users; improved torque control and comfort.',
-        desc: `Developed ergonomic handle geometry and interchangeable heads; iterated via user tests and low‑fi foam cores to SLA.`,
+        impact: 'Accessible for low-grip-strength users; improved torque control and comfort.',
+        desc: `Developed ergonomic handle geometry and interchangeable heads; iterated via user tests and low-fi foam cores to SLA.`,
         media: { type:'image', src:'https://images.unsplash.com/photo-1610041516061-2a0b9afd1cd3?q=80&w=1200&auto=format&fit=crop' }
       }
     ];
@@ -350,4 +346,3 @@
   </script>
 </body>
 </html>
-
