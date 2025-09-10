@@ -8,23 +8,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Icons (optional). If these don't load on your network, the site still works. -->
   <script src="https://kit.fontawesome.com/5d5b60c6df.js" crossorigin="anonymous"></script>
   <style>
     :root{
-      --bg: #f8fafc; --text: #0f172a; --muted: #475569; --card:#fff; --ring:#e2e8f0;
-      --shadow: 0 10px 30px rgba(2,6,23,.08); --shadow-lg: 0 30px 80px rgba(2,6,23,.12);
-      --grad-1: linear-gradient(120deg, #6366f1, #06b6d4 60%, #22d3ee);
-      --grad-2: linear-gradient(120deg, #a78bfa, #ec4899 60%, #f59e0b);
+      --bg:#f8fafc; --text:#0f172a; --muted:#475569; --card:#fff; --ring:#e2e8f0;
+      --shadow:0 10px 30px rgba(2,6,23,.08); --shadow-lg:0 30px 80px rgba(2,6,23,.12);
+      --grad-1:linear-gradient(120deg,#6366f1,#06b6d4 60%,#22d3ee);
+      --grad-2:linear-gradient(120deg,#a78bfa,#ec4899 60%,#f59e0b);
       --link:#2563eb;
     }
     html[data-theme="dark"]{
       --bg:#0b1220; --text:#eef2ff; --muted:#a8b3cf; --card:#0f172a; --ring:#1f2937;
       --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 40px 100px rgba(0,0,0,.55);
-      --grad-1: linear-gradient(120deg, #22d3ee, #06b6d4 60%, #6366f1);
-      --grad-2: linear-gradient(120deg, #f59e0b, #ec4899 60%, #a78bfa);
+      --grad-1:linear-gradient(120deg,#22d3ee,#06b6d4 60%,#6366f1);
+      --grad-2:linear-gradient(120deg,#f59e0b,#ec4899 60%,#a78bfa);
       --link:#93c5fd;
     }
-    body{margin:0; font-family:Inter,system-ui; color:var(--text); background:var(--bg)}
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text); background:var(--bg)}
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
@@ -36,17 +38,13 @@
     .nav__links{display:flex; gap:1rem; align-items:center}
     .theme-toggle{border:1px solid var(--ring); background:var(--card); padding:.4rem .6rem; border-radius:999px; cursor:pointer; box-shadow:var(--shadow)}
 
-    /* Left-aligned layout */
-    main section{ text-align:left }
-
+    main section{text-align:left}
     .hero{padding:64px 0 16px}
-    .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; color:transparent}
+    .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; background-clip:text; color:transparent}
     .hero p{color:var(--muted); font-size:17px; max-width:760px}
+    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; line-height:1.2}
+    .section-title span{background:var(--grad-2); -webkit-background-clip:text; background-clip:text; color:transparent}
 
-    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; padding:0; line-height:1.2}
-    .section-title span{background:var(--grad-2); -webkit-background-clip:text; color:transparent}
-
-    /* Projects grid (cards become links) */
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:16px 0 60px}
     .card{display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--ring); border-radius:16px; box-shadow:var(--shadow); padding:18px; transition:transform .2s, box-shadow .2s}
     .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
@@ -57,7 +55,7 @@
 
     footer{border-top:1px solid var(--ring); padding:34px 0; color:var(--muted); text-align:left}
 
-    /* Detail View (single-page router) */
+    /* Detail View */
     .detail{max-width:900px}
     .detail h1{font-family:"Playfair Display",serif; font-size:clamp(28px,4.5vw,46px); margin:0 0 .5rem}
     .detail .sub{color:var(--muted); margin-bottom:12px}
@@ -80,26 +78,38 @@
     </div>
   </header>
 
-  <main id="app" class="container" style="padding-bottom:40px"></main>
+  <main id="app" class="container" style="padding-bottom:40px">
+    <noscript>
+      <section class="hero">
+        <h1>I design hardware solutions.</h1>
+        <p>Please enable JavaScript to view projects.</p>
+      </section>
+    </noscript>
+  </main>
 
   <footer>
     <div class="container">© <span id="year"></span> Tejas Sachdeva. All rights reserved.</div>
   </footer>
 
   <script>
+    // Ensure initial hash for routing
+    if(!location.hash) location.hash = '#/';
+
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Theme toggle (persist)
     const root = document.documentElement;
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme) root.setAttribute('data-theme', savedTheme);
-    document.getElementById('themeBtn').addEventListener('click', ()=>{
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn?.addEventListener('click', ()=>{
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
 
-    // ---------------- SPA Router ----------------
+    // --------- Router ---------
     const app = document.getElementById('app');
 
     const projects = [
@@ -171,7 +181,7 @@
 
     function ProjectDetail(id){
       const p = projects.find(x=>x.id===id);
-      if(!p) return `<p>Project not found.</p>`;
+      if(!p) return `<section class="detail"><p>Project not found.</p></section>`;
       const copy = detailCopy[id] || ['Description coming soon.'];
       return `
         <a class="back" href="#/"><i class="fas fa-arrow-left"></i> Back to projects</a>
@@ -186,7 +196,7 @@
 
     function render(){
       const raw = location.hash || '#/';
-      const path = raw.replace(/^#/, ''); // remove leading '#'
+      const path = raw.startsWith('#') ? raw.slice(1) : raw; // remove leading '#'
       const parts = path.split('/').filter(Boolean); // e.g. ['project','rc-car']
 
       if(parts[0] === 'project' && parts[1]){
@@ -194,20 +204,21 @@
         return;
       }
 
-      // Default & any other route => Home
+      // Default & other routes => Home
       app.innerHTML = Home();
 
-      // Optional: if route is '/projects', scroll to projects after render
-      if(parts[0] === 'projects'){
-        const el = document.getElementById('projects');
-        el && el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    } else {
-        app.innerHTML = Home();
+      // If route is '/projects' or '/resume' '/about' '/contact', scroll to that section after render
+      const sectionId = ['projects','resume','about','contact'].includes(parts[0]) ? parts[0] : null;
+      if(sectionId){
+        setTimeout(()=>{
+          const el = document.getElementById(sectionId);
+          el && el.scrollIntoView({behavior:'smooth', block:'start'});
+        }, 0);
       }
     }
 
     window.addEventListener('hashchange', render);
+    // Render immediately on load
     render();
   </script>
 </body>
