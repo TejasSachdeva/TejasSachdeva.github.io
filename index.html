@@ -15,13 +15,17 @@
       --shadow: 0 10px 30px rgba(2,6,23,.08); --shadow-lg: 0 30px 80px rgba(2,6,23,.12);
       --grad-1: linear-gradient(120deg, #6366f1, #06b6d4 60%, #22d3ee);
       --grad-2: linear-gradient(120deg, #a78bfa, #ec4899 60%, #f59e0b);
+      --link:#2563eb;
     }
     html[data-theme="dark"]{
       --bg:#0b1220; --text:#eef2ff; --muted:#a8b3cf; --card:#0f172a; --ring:#1f2937;
       --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 40px 100px rgba(0,0,0,.55);
+      --grad-1: linear-gradient(120deg, #22d3ee, #06b6d4 60%, #6366f1);
+      --grad-2: linear-gradient(120deg, #f59e0b, #ec4899 60%, #a78bfa);
+      --link:#93c5fd;
     }
     body{margin:0; font-family:Inter,system-ui; color:var(--text); background:var(--bg)}
-    a{color:#2563eb; text-decoration:none}
+    a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
 
@@ -32,113 +36,51 @@
     .nav__links{display:flex; gap:1rem; align-items:center}
     .theme-toggle{border:1px solid var(--ring); background:var(--card); padding:.4rem .6rem; border-radius:999px; cursor:pointer; box-shadow:var(--shadow)}
 
-    .hero{padding:96px 0 28px; text-align:center}
-    .hero h1{font-family:"Playfair Display",serif; font-size:clamp(36px,6vw,64px); margin:.25rem 0 .6rem; background:var(--grad-1); -webkit-background-clip:text; color:transparent}
-    .hero p{color:var(--muted); font-size:18px; max-width:700px; margin:0 auto}
+    /* Left-aligned layout */
+    main section{ text-align:left }
 
-    .section-title{font-size:28px; font-weight:800; margin:50px 0 20px; text-align:center}
+    .hero{padding:64px 0 16px}
+    .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; color:transparent}
+    .hero p{color:var(--muted); font-size:17px; max-width:760px}
+
+    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px}
     .section-title span{background:var(--grad-2); -webkit-background-clip:text; color:transparent}
 
-    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:20px}
-    .skill{border:1px solid var(--ring); background:var(--card); border-radius:12px; padding:.6rem .8rem; font-size:14px; color:var(--muted); text-align:center; box-shadow:var(--shadow)}
-
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin:30px 0 90px}
-    .card{background:var(--card); border:1px solid var(--ring); border-radius:18px; box-shadow:var(--shadow); padding:20px; transition:transform .2s, box-shadow .2s}
+    /* Projects grid (cards become links) */
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:16px 0 60px}
+    .card{display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--ring); border-radius:16px; box-shadow:var(--shadow); padding:18px; transition:transform .2s, box-shadow .2s}
     .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
-    .card-title{font-weight:700; font-size:18px; margin:10px 0; display:flex; align-items:center; gap:.5rem}
+    .card-title{font-weight:700; font-size:18px; margin:8px 0; display:flex; align-items:center; gap:.5rem}
     .card-title i{color:#6366f1}
-    .card-sub{font-size:14px; color:var(--muted); margin-bottom:10px}
-    .card p{font-size:14px; line-height:1.5; color:var(--muted)}
+    .card-sub{font-size:14px; color:var(--muted); margin-bottom:8px}
+    .card p{font-size:14px; line-height:1.55; color:var(--muted)}
 
-    .center-text{text-align:center; max-width:800px; margin:0 auto; line-height:1.7; color:var(--muted)}
+    footer{border-top:1px solid var(--ring); padding:34px 0; color:var(--muted); text-align:left}
 
-    footer{border-top:1px solid var(--ring); padding:40px 0; color:var(--muted); text-align:center}
+    /* Detail View (single-page router) */
+    .detail{max-width:900px}
+    .detail h1{font-family:"Playfair Display",serif; font-size:clamp(28px,4.5vw,46px); margin:0 0 .5rem}
+    .detail .sub{color:var(--muted); margin-bottom:12px}
+    .back{display:inline-flex; align-items:center; gap:.35rem; font-weight:600; margin:8px 0 16px}
+    .detail .hero-media{aspect-ratio:16/9; background:#e5e7eb; border:1px solid var(--ring); border-radius:12px; margin:14px 0 18px}
+    .detail p{color:var(--muted); line-height:1.7}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a class="brand__name" href="#top">TEJAS SACHDEVA</a>
+      <a class="brand__name" href="#/">TEJAS SACHDEVA</a>
       <nav class="nav__links">
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#/projects">Projects</a>
+        <a href="#/resume">Resume</a>
+        <a href="#/about">About</a>
+        <a href="#/contact">Contact</a>
         <button id="themeBtn" class="theme-toggle" aria-label="Toggle color theme">🌞/🌙</button>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero container">
-      <h1>I design hardware solutions.</h1>
-      <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
-    </section>
-
-    <section id="skills" class="container">
-      <h2 class="section-title"><span>Skills</span></h2>
-      <div class="skills-grid">
-        <div class="skill">Fusion 360</div>
-        <div class="skill">SolidWorks</div>
-        <div class="skill">ANSYS Mechanical</div>
-        <div class="skill">ANSYS Fluent</div>
-        <div class="skill">FEA / CFD</div>
-        <div class="skill">Thermal & Structural Analysis</div>
-        <div class="skill">GD&T</div>
-        <div class="skill">DFM/DFA</div>
-        <div class="skill">Tolerance Stackups</div>
-        <div class="skill">Rapid Prototyping</div>
-        <div class="skill">3D Printing (FDM/SLA)</div>
-        <div class="skill">CNC / Manual Machining</div>
-        <div class="skill">Materials Selection</div>
-        <div class="skill">MATLAB</div>
-        <div class="skill">Python</div>
-        <div class="skill">Testing & Validation</div>
-      </div>
-    </section>
-
-    <section id="projects" class="container">
-      <h2 class="section-title"><span>Highlighted Projects</span></h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-title"><i class="fas fa-car"></i> RC Car — Custom Chassis & Drivetrain</div>
-          <div class="card-sub">CAD | FEA | Powertrain Integration</div>
-          <p>Designed modular chassis with serviceable mounts, verified stiffness with quick FEA, and fabricated via FDM + CNC. Tuned suspension geometry and gear ratio for acceleration and handling.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="fas fa-seedling"></i> Automated Hydroponics System</div>
-          <div class="card-sub">Controls | Sensing | DFM</div>
-          <p>Developed closed-loop control for nutrient dosing with calibrated sensors; designed water-tight manifolds and quick-disconnects, plus DFM-friendly printed brackets.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="fas fa-train"></i> Hyperloop Track — Texas Guadaloop</div>
-          <div class="card-sub">CAD | FEA | Manufacturing</div>
-          <p>Designed track segments and buffer stop; validated with static and vibrational analyses; built fixtures and jigs to control tolerances during fabrication.</p>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="fas fa-bolt"></i> Longhorn Racing — Battery Cooling Intake/Outtake</div>
-          <div class="card-sub">Thermal | CFD | CAD Automation</div>
-          <p>Designed intake/outtake manifold, ran parametric CFD sweeps to balance temperature spread and pressure loss, and iterated geometry via CAD automation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="resume" class="container">
-      <h2 class="section-title"><span>Resume</span></h2>
-      <p class="center-text">Download a PDF copy of my current resume <a href="Tejas Sachdeva Resume Tech.pdf" download>here</a>.</p>
-    </section>
-
-    <section id="about" class="container">
-      <h2 class="section-title"><span>About</span></h2>
-      <p class="center-text">I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
-    </section>
-
-    <section id="contact" class="container">
-      <h2 class="section-title"><span>Contact</span></h2>
-      <p class="center-text">Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
-    </section>
-  </main>
+  <main id="app" class="container" style="padding-bottom:40px"></main>
 
   <footer>
     <div class="container">© <span id="year"></span> Tejas Sachdeva. All rights reserved.</div>
@@ -147,7 +89,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Theme toggle
+    // Theme toggle (persist)
     const root = document.documentElement;
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme) root.setAttribute('data-theme', savedTheme);
@@ -156,6 +98,104 @@
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
     });
+
+    // ---------------- SPA Router ----------------
+    const app = document.getElementById('app');
+
+    const projects = [
+      { id:'rc-car', icon:'fa-car', title:'RC Car — Custom Chassis & Drivetrain', sub:'CAD | FEA | Powertrain Integration' },
+      { id:'hydroponics', icon:'fa-seedling', title:'Automated Hydroponics System', sub:'Controls | Sensing | DFM' },
+      { id:'hyperloop-track', icon:'fa-train', title:'Hyperloop Track — Texas Guadaloop', sub:'CAD | FEA | Manufacturing' },
+      { id:'longhorn-battery', icon:'fa-bolt', title:'Longhorn Racing — Battery Cooling Intake/Outtake', sub:'Thermal | CFD | CAD Automation' },
+    ];
+
+    function Home(){
+      return `
+        <section class="hero">
+          <h1>I design hardware solutions.</h1>
+          <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
+        </section>
+
+        <section id="projects">
+          <h2 class="section-title"><span>Highlighted Projects</span></h2>
+          <div class="grid">
+            ${projects.map(p=>`
+              <a class="card" href="#/project/${p.id}">
+                <div class="card-title"><i class="fas ${p.icon}"></i> ${p.title}</div>
+                <div class="card-sub">${p.sub}</div>
+                <p>Click to view full description, role, tools, impact, and media for this project.</p>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+
+        <section id="resume">
+          <h2 class="section-title"><span>Resume</span></h2>
+          <p>Download a PDF copy of my current resume <a href="Tejas Sachdeva Resume Tech.pdf" download>here</a>.</p>
+        </section>
+
+        <section id="about">
+          <h2 class="section-title"><span>About</span></h2>
+          <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
+        </section>
+
+        <section id="contact">
+          <h2 class="section-title"><span>Contact</span></h2>
+          <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
+        </section>
+      `;
+    }
+
+    const detailCopy = {
+      'rc-car': [
+        'Placeholder paragraph: overview of the RC car project—goals, constraints, and the overall approach to chassis/drivetrain design.',
+        'Placeholder paragraph: CAD highlights, structural considerations, packaging of electronics, and iteration cycles.',
+        'Placeholder paragraph: manufacturing steps (FDM/CNC), assembly notes, and test results/tuning.'
+      ],
+      'hydroponics': [
+        'Placeholder: high-level system description—nutrient dosing, sensor suite (pH/EC/Temp), and enclosure design.',
+        'Placeholder: control strategy, calibration process, and reliability/maintenance considerations.',
+        'Placeholder: manufacturing/DFM decisions, waterproofing, and lessons learned.'
+      ],
+      'hyperloop-track': [
+        'Placeholder: scope of work within Texas Guadaloop—track segments and buffer stop objectives.',
+        'Placeholder: FEA/validation approach, fixtures/jigs for tolerances, and manufacturing notes.',
+        'Placeholder: outcomes, FOS targets achieved, and collaboration with other subteams.'
+      ],
+      'longhorn-battery': [
+        'Placeholder: battery pack cooling objectives and packaging constraints within LHR.',
+        'Placeholder: CFD parametric sweeps, ΔT distribution goals, and pressure drop trade-offs.',
+        'Placeholder: CAD automation loop and final results.'
+      ]
+    };
+
+    function ProjectDetail(id){
+      const p = projects.find(x=>x.id===id);
+      if(!p) return `<p>Project not found.</p>`;
+      const copy = detailCopy[id] || ['Description coming soon.'];
+      return `
+        <a class="back" href="#/"><i class="fas fa-arrow-left"></i> Back to projects</a>
+        <article class="detail">
+          <h1>${p.title}</h1>
+          <div class="sub">${p.sub}</div>
+          <div class="hero-media" aria-label="project media placeholder"></div>
+          ${copy.map(par=>`<p>${par}</p>`).join('')}
+        </article>
+      `;
+    }
+
+    function render(){
+      const hash = location.hash || '#/';
+      const parts = hash.split('/').filter(Boolean); // ["#", "project", "rc-car"] => ["project","rc-car"]
+      if(parts[0] === 'project' && parts[1]){
+        app.innerHTML = ProjectDetail(parts[1]);
+      } else {
+        app.innerHTML = Home();
+      }
+    }
+
+    window.addEventListener('hashchange', render);
+    render();
   </script>
 </body>
 </html>
