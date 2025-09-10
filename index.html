@@ -42,16 +42,7 @@
     .hero p{color:var(--muted); font-size:17px; max-width:760px}
     .hero__row{display:flex; align-items:center; gap:24px; flex-wrap:wrap}
     .avatar{width:180px; height:180px; object-fit:cover; border-radius:50%; box-shadow:var(--shadow-lg); border:1px solid var(--ring)}
-    .resume-embed{margin-top:12px; border:1px solid var(--ring); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
-    /* hero with portrait */
-    .hero-grid{display:grid; grid-template-columns: 1.2fr 1fr; gap:28px; align-items:center}
-    @media (max-width: 880px){.hero-grid{grid-template-columns:1fr}}
-    .portrait{justify-self:end; width:min(380px,100%); border-radius:18px; overflow:hidden; border:1px solid var(--ring); box-shadow:var(--shadow)}
-    .portrait img{display:block; width:100%; height:auto}
-    .btn-row{display:flex; gap:10px; margin-top:14px}
-    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .85rem; border-radius:10px; border:1px solid var(--ring); background:var(--card); box-shadow:var(--shadow); text-decoration:none; color:inherit; font-weight:600}
-    .btn:hover{transform:translateY(-1px); box-shadow:var(--shadow-lg)}
-    .pdf-embed{width:100%; max-width:900px; height:520px; border:1px solid var(--ring); border-radius:12px; box-shadow:var(--shadow); background:var(--card)}
+
     .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; line-height:1.2}
     .section-title span{background:var(--grad-2); -webkit-background-clip:text; background-clip:text; color:transparent}
 
@@ -65,15 +56,13 @@
     footer{border-top:1px solid var(--ring); padding:34px 0; color:var(--muted); text-align:left}
 
     .detail{max-width:900px}
-    .detail h1{font-family:"Playfair Display",serif; font-size:clamp(28px,4.5vw,46px); margin:0 0 .5rem; text-align:left}
-    .detail .sub{color:var(--muted); margin-bottom:12px; text-align:left}
-    .back{display:inline-flex; align-items:center; gap:.35rem; font-weight:600; margin:8px 0 16px}
-    .detail .hero-media{aspect-ratio:16/9; background:#e5e7eb; border:1px solid var(--ring); border-radius:12px; margin:14px 0 18px}
-    .detail p{color:var(--muted); line-height:1.7; text-align:left}
     .detail h2{font-size:20px; margin:22px 0 10px; font-weight:800}
     .detail .media{margin:16px 0}
     .detail .media img{width:100%; border-radius:10px; box-shadow:var(--shadow)}
     .detail .media figcaption{font-size:13px; color:var(--muted); margin-top:6px}
+    .detail p{color:var(--muted); line-height:1.7; text-align:left}
+
+    .resume-embed{margin-top:12px; border:1px solid var(--ring); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
   </style>
 </head>
 <body>
@@ -93,14 +82,14 @@
   <main id="app" class="container" style="padding-bottom:40px">
     <noscript>
       <section class="hero">
-          <div class="hero__row">
-            <img class="avatar" src="images/profile.jpg" alt="Photo of Tejas Sachdeva">
-            <div>
-              <h1>Hi! I'm Tejas.</h1>
-              <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
-            </div>
+        <div class="hero__row">
+          <img class="avatar" src="images/profile.jpg" alt="Photo of Tejas Sachdeva">
+          <div>
+            <h1>Hi! I'm Tejas.</h1>
+            <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
           </div>
-        </section>
+        </div>
+      </section>
     </noscript>
   </main>
 
@@ -109,8 +98,11 @@
   </footer>
 
   <script>
+    // Router bootstrap
     if(!location.hash) location.hash = '#/';
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
     const root=document.documentElement;
     const savedTheme=localStorage.getItem('theme');
     if(savedTheme) root.setAttribute('data-theme',savedTheme);
@@ -121,6 +113,8 @@
     });
 
     const app=document.getElementById('app');
+
+    // Project metadata
     const projects=[
       {id:'rc-car',title:'RC Car — Custom Chassis & Drivetrain',sub:'CAD | FEA | Powertrain Integration'},
       {id:'hydroponics',title:'Automated Hydroponics System',sub:'Controls | Sensing | DFM'},
@@ -128,69 +122,7 @@
       {id:'longhorn-battery',title:'Longhorn Racing — Battery Cooling Intake/Outtake',sub:'Thermal | CFD | CAD Automation'}
     ];
 
-    function Home(){
-      return `
-        <section class="hero">
-          <div class="hero-grid">
-            <div>
-              <h1>Hi! I'm Tejas.</h1>
-              <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
-              <div class="btn-row">
-                <a class="btn" href="#/projects">View projects</a>
-                <a class="btn" href="Tejas Sachdeva Resume Tech.pdf" download>Download resume</a>
-              </div>
-            </div>
-            <figure class="portrait" aria-label="Portrait of Tejas">
-              <img src="images/profile.jpg" alt="Tejas Sachdeva portrait"/>
-            </figure>
-          </div>
-        </section>
-        <section id="projects">
-          <h2 class="section-title"><span>Highlighted Projects</span></h2>
-          <div class="grid">
-            ${projects.map(p=>`
-              <a class="card" href="#/project/${p.id}">
-                <div class="card-title">${p.title}</div>
-                <div class="card-sub">${p.sub}</div>
-                <p>Click to view full description, role, tools, impact, and media for this project.</p>
-              </a>
-            `).join('')}
-          </div>
-        </section>
-        <section id="resume">
-          <h2 class="section-title"><span>Resume</span></h2>
-          <p>You can view my resume below or <a href="Tejas Sachdeva Resume Tech.pdf" download>download it here</a>.</p>
-          <div class="resume-embed">
-            <object data="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" width="100%" height="700">
-              <embed src="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" />
-            </object>
-          </div>
-        </section>
-        <section id="about">
-          <h2 class="section-title"><span>About</span></h2>
-          <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
-        </section>
-        <section id="contact">
-          <h2 class="section-title"><span>Contact</span></h2>
-          <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
-        </section>`;
-    }
-          </div>
-        </section>
-        <section id="resume">
-          <h2 class="section-title"><span>Resume</span></h2>
-          <p>Download a PDF copy of my current resume <a href="Tejas Sachdeva Resume Tech.pdf" download>here</a>.</p>
-        </section>
-        <section id="about">
-          <h2 class="section-title"><span>About</span></h2>
-          <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
-        </section>
-        <section id="contact">
-          <h2 class="section-title"><span>Contact</span></h2>
-          <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
-        </section>`;
-    }
-
+    // Case-study content (RC Car filled, others placeholders)
     const detailCopy={
       'rc-car':[`
   <h2>Overview<\/h2>
@@ -289,21 +221,64 @@
     <figcaption>On-track testing at Shigley Speedway.<\/figcaption>
   <\/figure>
 `],
-      'hydroponics':['Placeholder: system description and enclosures.','Placeholder: control strategy and calibration.','Placeholder: DFM decisions and waterproofing.'],
-      'hyperloop-track':['Placeholder: scope and objectives.','Placeholder: FEA approach and manufacturing notes.','Placeholder: outcomes and collaboration.'],
-      'longhorn-battery':['Placeholder: cooling objectives.','Placeholder: CFD sweeps and ΔT distribution.','Placeholder: CAD automation and results.']
+      'hydroponics':['<p>Placeholder: system description and enclosures.<\/p>'],
+      'hyperloop-track':['<p>Placeholder: scope and objectives.<\/p>'],
+      'longhorn-battery':['<p>Placeholder: cooling objectives.<\/p>']
     };
+
+    // Views
+    function Home(){
+      return `
+        <section class="hero">
+          <div class="hero__row">
+            <img class="avatar" src="images/profile.jpg" alt="Photo of Tejas Sachdeva">
+            <div>
+              <h1>Hi! I'm Tejas.</h1>
+              <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
+            </div>
+          </div>
+        </section>
+        <section id="projects">
+          <h2 class="section-title"><span>Highlighted Projects</span></h2>
+          <div class="grid">
+            ${projects.map(p=>`
+              <a class="card" href="#/project/${p.id}">
+                <div class="card-title">${p.title}</div>
+                <div class="card-sub">${p.sub}</div>
+                <p>Click to view full description, role, tools, impact, and media for this project.</p>
+              </a>
+            `).join('')}
+          </div>
+        </section>
+        <section id="resume">
+          <h2 class="section-title"><span>Resume</span></h2>
+          <p>You can view my resume below or <a href="Tejas Sachdeva Resume Tech.pdf" download>download it here</a>.</p>
+          <div class="resume-embed">
+            <object data="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" width="100%" height="700">
+              <embed src="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" />
+              <p>If the PDF does not display, <a href="Tejas Sachdeva Resume Tech.pdf" target="_blank" rel="noopener">open it in a new tab</a>.</p>
+            </object>
+          </div>
+        </section>
+        <section id="about">
+          <h2 class="section-title"><span>About</span></h2>
+          <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
+        </section>
+        <section id="contact">
+          <h2 class="section-title"><span>Contact</span></h2>
+          <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
+        </section>`;
+    }
 
     function ProjectDetail(id){
       const p=projects.find(x=>x.id===id);
       if(!p) return `<section class="detail"><p>Project not found.</p></section>`;
-      const copy=detailCopy[id]||['Description coming soon.'];
+      const copy=detailCopy[id]||['<p>Description coming soon.</p>'];
       return `
-        <a class="back" href="#/"><i class="fas fa-arrow-left"></i> Back to projects</a>
+        <a class="back" href="#/">← Back to projects</a>
         <article class="detail">
           <h1>${p.title}</h1>
           <div class="sub">${p.sub}</div>
-          <div class="hero-media" aria-label="project media placeholder"></div>
           ${copy.join('')}
         </article>`;
     }
