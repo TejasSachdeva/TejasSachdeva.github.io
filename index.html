@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <!-- Icons (optional). If these don't load on your network, the site still works. -->
   <script src="https://kit.fontawesome.com/5d5b60c6df.js" crossorigin="anonymous"></script>
   <style>
     :root{
@@ -48,20 +47,19 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:16px 0 60px}
     .card{display:block; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--ring); border-radius:16px; box-shadow:var(--shadow); padding:18px; transition:transform .2s, box-shadow .2s}
     .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
-    .card-title{font-weight:700; font-size:18px; margin:8px 0; display:flex; align-items:center; gap:.5rem}
-    .card-title i{color:#6366f1}
-    .card-sub{font-size:14px; color:var(--muted); margin-bottom:8px}
-    .card p{font-size:14px; line-height:1.55; color:var(--muted)}
+    .card-title{font-weight:700; font-size:18px; margin:0 0 4px; display:flex; align-items:center; gap:.5rem; text-align:left}
+    .card-title i{color:#6366f1; min-width:18px}
+    .card-sub{font-size:14px; color:var(--muted); margin:0 0 8px; text-align:left}
+    .card p{font-size:14px; line-height:1.55; color:var(--muted); margin:0; text-align:left}
 
     footer{border-top:1px solid var(--ring); padding:34px 0; color:var(--muted); text-align:left}
 
-    /* Detail View */
     .detail{max-width:900px}
-    .detail h1{font-family:"Playfair Display",serif; font-size:clamp(28px,4.5vw,46px); margin:0 0 .5rem}
-    .detail .sub{color:var(--muted); margin-bottom:12px}
+    .detail h1{font-family:"Playfair Display",serif; font-size:clamp(28px,4.5vw,46px); margin:0 0 .5rem; text-align:left}
+    .detail .sub{color:var(--muted); margin-bottom:12px; text-align:left}
     .back{display:inline-flex; align-items:center; gap:.35rem; font-weight:600; margin:8px 0 16px}
     .detail .hero-media{aspect-ratio:16/9; background:#e5e7eb; border:1px solid var(--ring); border-radius:12px; margin:14px 0 18px}
-    .detail p{color:var(--muted); line-height:1.7}
+    .detail p{color:var(--muted); line-height:1.7; text-align:left}
   </style>
 </head>
 <body>
@@ -92,31 +90,23 @@
   </footer>
 
   <script>
-    // Ensure initial hash for routing
     if(!location.hash) location.hash = '#/';
-
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Theme toggle (persist)
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem('theme');
-    if(savedTheme) root.setAttribute('data-theme', savedTheme);
-    const themeBtn = document.getElementById('themeBtn');
-    themeBtn?.addEventListener('click', ()=>{
-      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+    const root=document.documentElement;
+    const savedTheme=localStorage.getItem('theme');
+    if(savedTheme) root.setAttribute('data-theme',savedTheme);
+    document.getElementById('themeBtn').addEventListener('click',()=>{
+      const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+      localStorage.setItem('theme',next);
     });
 
-    // --------- Router ---------
-    const app = document.getElementById('app');
-
-    const projects = [
-      { id:'rc-car', icon:'fa-car', title:'RC Car — Custom Chassis & Drivetrain', sub:'CAD | FEA | Powertrain Integration' },
-      { id:'hydroponics', icon:'fa-seedling', title:'Automated Hydroponics System', sub:'Controls | Sensing | DFM' },
-      { id:'hyperloop-track', icon:'fa-train', title:'Hyperloop Track — Texas Guadaloop', sub:'CAD | FEA | Manufacturing' },
-      { id:'longhorn-battery', icon:'fa-bolt', title:'Longhorn Racing — Battery Cooling Intake/Outtake', sub:'Thermal | CFD | CAD Automation' },
+    const app=document.getElementById('app');
+    const projects=[
+      {id:'rc-car',icon:'fa-car',title:'RC Car — Custom Chassis & Drivetrain',sub:'CAD | FEA | Powertrain Integration'},
+      {id:'hydroponics',icon:'fa-seedling',title:'Automated Hydroponics System',sub:'Controls | Sensing | DFM'},
+      {id:'hyperloop-track',icon:'fa-train',title:'Hyperloop Track — Texas Guadaloop',sub:'CAD | FEA | Manufacturing'},
+      {id:'longhorn-battery',icon:'fa-bolt',title:'Longhorn Racing — Battery Cooling Intake/Outtake',sub:'Thermal | CFD | CAD Automation'}
     ];
 
     function Home(){
@@ -125,7 +115,6 @@
           <h1>I design hardware solutions.</h1>
           <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
         </section>
-
         <section id="projects">
           <h2 class="section-title"><span>Highlighted Projects</span></h2>
           <div class="grid">
@@ -138,51 +127,31 @@
             `).join('')}
           </div>
         </section>
-
         <section id="resume">
           <h2 class="section-title"><span>Resume</span></h2>
           <p>Download a PDF copy of my current resume <a href="Tejas Sachdeva Resume Tech.pdf" download>here</a>.</p>
         </section>
-
         <section id="about">
           <h2 class="section-title"><span>About</span></h2>
           <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
         </section>
-
         <section id="contact">
           <h2 class="section-title"><span>Contact</span></h2>
           <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
-        </section>
-      `;
+        </section>`;
     }
 
-    const detailCopy = {
-      'rc-car': [
-        'Placeholder paragraph: overview of the RC car project—goals, constraints, and the overall approach to chassis/drivetrain design.',
-        'Placeholder paragraph: CAD highlights, structural considerations, packaging of electronics, and iteration cycles.',
-        'Placeholder paragraph: manufacturing steps (FDM/CNC), assembly notes, and test results/tuning.'
-      ],
-      'hydroponics': [
-        'Placeholder: high-level system description—nutrient dosing, sensor suite (pH/EC/Temp), and enclosure design.',
-        'Placeholder: control strategy, calibration process, and reliability/maintenance considerations.',
-        'Placeholder: manufacturing/DFM decisions, waterproofing, and lessons learned.'
-      ],
-      'hyperloop-track': [
-        'Placeholder: scope of work within Texas Guadaloop—track segments and buffer stop objectives.',
-        'Placeholder: FEA/validation approach, fixtures/jigs for tolerances, and manufacturing notes.',
-        'Placeholder: outcomes, FOS targets achieved, and collaboration with other subteams.'
-      ],
-      'longhorn-battery': [
-        'Placeholder: battery pack cooling objectives and packaging constraints within LHR.',
-        'Placeholder: CFD parametric sweeps, ΔT distribution goals, and pressure drop trade-offs.',
-        'Placeholder: CAD automation loop and final results.'
-      ]
+    const detailCopy={
+      'rc-car':['Placeholder paragraph: overview of the RC car project.','Placeholder: CAD highlights and iteration cycles.','Placeholder: manufacturing steps and testing.'],
+      'hydroponics':['Placeholder: system description and enclosures.','Placeholder: control strategy and calibration.','Placeholder: DFM decisions and waterproofing.'],
+      'hyperloop-track':['Placeholder: scope and objectives.','Placeholder: FEA approach and manufacturing notes.','Placeholder: outcomes and collaboration.'],
+      'longhorn-battery':['Placeholder: cooling objectives.','Placeholder: CFD sweeps and ΔT distribution.','Placeholder: CAD automation and results.']
     };
 
     function ProjectDetail(id){
-      const p = projects.find(x=>x.id===id);
+      const p=projects.find(x=>x.id===id);
       if(!p) return `<section class="detail"><p>Project not found.</p></section>`;
-      const copy = detailCopy[id] || ['Description coming soon.'];
+      const copy=detailCopy[id]||['Description coming soon.'];
       return `
         <a class="back" href="#/"><i class="fas fa-arrow-left"></i> Back to projects</a>
         <article class="detail">
@@ -190,37 +159,21 @@
           <div class="sub">${p.sub}</div>
           <div class="hero-media" aria-label="project media placeholder"></div>
           ${copy.map(par=>`<p>${par}</p>`).join('')}
-        </article>
-      `;
+        </article>`;
     }
 
     function render(){
-      const raw = location.hash || '#/';
-      const path = raw.startsWith('#') ? raw.slice(1) : raw; // remove leading '#'
-      const parts = path.split('/').filter(Boolean); // e.g. ['project','rc-car']
-
-      if(parts[0] === 'project' && parts[1]){
-        app.innerHTML = ProjectDetail(parts[1]);
-        return;
-      }
-
-      // Default & other routes => Home
-      app.innerHTML = Home();
-
-      // If route is '/projects' or '/resume' '/about' '/contact', scroll to that section after render
-      const sectionId = ['projects','resume','about','contact'].includes(parts[0]) ? parts[0] : null;
-      if(sectionId){
-        setTimeout(()=>{
-          const el = document.getElementById(sectionId);
-          el && el.scrollIntoView({behavior:'smooth', block:'start'});
-        }, 0);
-      }
+      const raw=location.hash||'#/';
+      const path=raw.startsWith('#')?raw.slice(1):raw;
+      const parts=path.split('/').filter(Boolean);
+      if(parts[0]==='project'&&parts[1]){app.innerHTML=ProjectDetail(parts[1]);return;}
+      app.innerHTML=Home();
+      const sectionId=['projects','resume','about','contact'].includes(parts[0])?parts[0]:null;
+      if(sectionId){setTimeout(()=>{document.getElementById(sectionId)?.scrollIntoView({behavior:'smooth',block:'start'});},0);}
     }
 
-    window.addEventListener('hashchange', render);
-    // Render immediately on load
+    window.addEventListener('hashchange',render);
     render();
   </script>
 </body>
 </html>
-
