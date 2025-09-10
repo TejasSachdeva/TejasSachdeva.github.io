@@ -41,7 +41,15 @@
     .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; background-clip:text; color:transparent}
     .hero p{color:var(--muted); font-size:17px; max-width:760px}
     .hero__row{display:flex; align-items:center; gap:24px; flex-wrap:wrap}
-    .avatar{width:180px; height:180px; object-fit:cover; border-radius:50%; box-shadow:var(--shadow-lg); border:1px solid var(--ring)}
+    .avatar{
+  width:180px; height:180px;
+  object-fit:cover; object-position:center;
+  border-radius:50%;
+  box-shadow:var(--shadow-lg);
+  border:1px solid var(--ring);
+  display:block;
+  flex-shrink:0;
+}
 
     .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; line-height:1.2}
     .section-title span{background:var(--grad-2); -webkit-background-clip:text; background-clip:text; color:transparent}
@@ -62,7 +70,20 @@
     .detail .media figcaption{font-size:13px; color:var(--muted); margin-top:6px}
     .detail p{color:var(--muted); line-height:1.7; text-align:left}
 
-    .resume-embed{margin-top:12px; border:1px solid var(--ring); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
+    .resume-embed{
+  margin-top:12px;
+  border:1px solid var(--ring);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:var(--card);
+}
+.resume-embed iframe{
+  width:100%;
+  height:min(85vh, 900px);
+  display:block;
+  border:0;
+}
   </style>
 </head>
 <body>
@@ -254,11 +275,9 @@
           <h2 class="section-title"><span>Resume</span></h2>
           <p>You can view my resume below or <a href="Tejas Sachdeva Resume Tech.pdf" download>download it here</a>.</p>
           <div class="resume-embed">
-            <object data="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" width="100%" height="700">
-              <embed src="Tejas Sachdeva Resume Tech.pdf" type="application/pdf" />
-              <p>If the PDF does not display, <a href="Tejas Sachdeva Resume Tech.pdf" target="_blank" rel="noopener">open it in a new tab</a>.</p>
-            </object>
+            <iframe src="Tejas Sachdeva Resume Tech.pdf#view=FitH" title="Tejas Sachdeva Resume" loading="lazy"></iframe>
           </div>
+          <p>If the PDF does not display, <a href="Tejas Sachdeva Resume Tech.pdf" target="_blank" rel="noopener">open it in a new tab</a>.</p>
         </section>
         <section id="about">
           <h2 class="section-title"><span>About</span></h2>
