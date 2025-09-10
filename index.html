@@ -16,15 +16,21 @@
       --grad-1: linear-gradient(120deg, #6366f1, #06b6d4 60%, #22d3ee);
       --grad-2: linear-gradient(120deg, #a78bfa, #ec4899 60%, #f59e0b);
     }
+    html[data-theme="dark"]{
+      --bg:#0b1220; --text:#eef2ff; --muted:#a8b3cf; --card:#0f172a; --ring:#1f2937;
+      --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 40px 100px rgba(0,0,0,.55);
+    }
     body{margin:0; font-family:Inter,system-ui; color:var(--text); background:var(--bg)}
     a{color:#2563eb; text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
 
     header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(255,255,255,.65); border-bottom:1px solid var(--ring)}
+    html[data-theme="dark"] header{background:rgba(13,17,23,.55)}
     .nav{display:flex; justify-content:space-between; align-items:center; min-height:74px}
     .brand__name{font-weight:800}
     .nav__links{display:flex; gap:1rem; align-items:center}
+    .theme-toggle{border:1px solid var(--ring); background:var(--card); padding:.4rem .6rem; border-radius:999px; cursor:pointer; box-shadow:var(--shadow)}
 
     .hero{padding:96px 0 28px; text-align:center}
     .hero h1{font-family:"Playfair Display",serif; font-size:clamp(36px,6vw,64px); margin:.25rem 0 .6rem; background:var(--grad-1); -webkit-background-clip:text; color:transparent}
@@ -59,6 +65,7 @@
         <a href="#resume">Resume</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <button id="themeBtn" class="theme-toggle" aria-label="Toggle color theme">🌞/🌙</button>
       </nav>
     </div>
   </header>
@@ -139,8 +146,16 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme) root.setAttribute('data-theme', savedTheme);
+    document.getElementById('themeBtn').addEventListener('click', ()=>{
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
   </script>
 </body>
 </html>
-
-
