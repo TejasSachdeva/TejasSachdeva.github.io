@@ -150,7 +150,7 @@
 
   <main id="top">
     <section class="hero container" aria-labelledby="intro-title">
-      <h1 id="intro-title">Hi! I'm Tejas.</h1>
+      <h1 id="intro-title">I design hardware solutions.</h1>
       <p>
         Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.
       </p>
@@ -158,26 +158,42 @@
         <a class="btn btn--primary" href="#projects">View projects</a>
         <a class="btn btn--ghost" href="#contact">Contact</a>
       </div>
-
-      <div class="chipbar" aria-label="Core skills">
-        <span class="chip">SolidWorks</span>
-        <span class="chip">ANSYS (CFD/FEA)</span>
-        <span class="chip">DFM/DFMEA</span>
-        <span class="chip">Design for Six Sigma (Green Belt)</span>
-        <span class="chip">Rapid Prototyping</span>
-        <span class="chip">MATLAB</span>
-        <span class="chip">NI DAQ</span>
-        <span class="chip">LabView</span>
-        <span class="chip">Fusion 360</span>
-        <span class="chip">Siemens NX</span>
-      </div>
-
-      <div class="filters" role="toolbar" aria-label="Filter projects by tag">
+      <div class="filters" role="toolbar" aria-label="Filter projects by tag"> role="toolbar" aria-label="Filter projects by tag">
         <button class="filter" data-filter="all" aria-pressed="true">All</button>
         <button class="filter" data-filter="product">Product Design</button>
         <button class="filter" data-filter="fea">FEA</button>
         <button class="filter" data-filter="thermal">Thermal</button>
         <button class="filter" data-filter="manufacturing">Manufacturing</button>
+      </div>
+    </section>
+
+    <section id="skills" class="container" aria-labelledby="skills-title" style="margin: 10px 0 60px">
+      <h2 id="skills-title" class="section-title"><span>Skills</span></h2>
+      <p style="color: var(--muted); max-width: 900px; line-height:1.7">Tooling and methods I use across the product lifecycle—from concept and CAD to analysis, validation, and manufacturing.</p>
+      <div class="skills-grid" style="display:grid; grid-template-columns: repeat(12,1fr); gap:12px; margin-top:14px">
+        <style>
+          .skill{border:1px solid var(--chip-border); background:var(--chip-bg); border-radius:12px; padding:.6rem .8rem; font-size:14px; color:var(--muted); text-align:center}
+          @media (max-width: 900px){ .skills-grid{grid-template-columns: repeat(6,1fr)} }
+          @media (max-width: 560px){ .skills-grid{grid-template-columns: repeat(3,1fr)} }
+        </style>
+        <div class="skill">Fusion 360</div>
+        <div class="skill">SolidWorks</div>
+        <div class="skill">ANSYS Mechanical</div>
+        <div class="skill">ANSYS Fluent (CFD)</div>
+        <div class="skill">FEA</div>
+        <div class="skill">CFD</div>
+        <div class="skill">Thermal Analysis</div>
+        <div class="skill">Structural Analysis</div>
+        <div class="skill">GD&T</div>
+        <div class="skill">DFM/DFA</div>
+        <div class="skill">Tolerance Stackups</div>
+        <div class="skill">Rapid Prototyping</div>
+        <div class="skill">3D Printing (FDM/SLA)</div>
+        <div class="skill">CNC / Manual Mill & Lathe</div>
+        <div class="skill">Materials Selection</div>
+        <div class="skill">MATLAB</div>
+        <div class="skill">Python</div>
+        <div class="skill">Lab Testing & Validation</div>
       </div>
     </section>
 
@@ -249,10 +265,63 @@
 
     // Project data
     const projects = [
-      { id:'parker-wellbore', title:'Rig Structural Optimization', subtitle:'FEA | API/ASME | Impact Fatigue', size:'m', badges:['Product Development','FEA'], tags:['fea','manufacturing'], img:'https://images.unsplash.com/photo-1581092335507-5cf32f0c4903?q=80&w=1200&auto=format&fit=crop', role:'Mechanical Analyst', tools:'SolidWorks, Autodesk Mechanical, ANSYS (static, modal, fatigue)', impact:'Reduced Von Mises stress fluctuation by 65%; established Working Load Limits and safety factors.', desc:`Analyzed Technical Service Reports for drill string mechanics, BOP systems, and annular lift-ring assemblies. Defined FEA parameters per API, ASME, and AISC standards; selected materials via Charpy V‑notch tests for impact scenarios.`, media:{ type:'image', src:'https://images.unsplash.com/photo-1581091014534-8987c1d3d74d?q=80&w=1200&auto=format&fit=crop' }, links:[{label:'Report (PDF)', href:'#'}] },
-      { id:'longhorn-battery-thermal', title:'Battery Manifold (Solar Vehicle)', subtitle:'Thermal | CFD | CAD Automation', size:'l', badges:['Thermal','Product Design'], tags:['thermal','product'], img:'https://images.unsplash.com/photo-1605901309584-818e25960a8b?q=80&w=1200&auto=format&fit=crop', role:'Thermal/CFD Engineer', tools:'ANSYS Fluent, SolidWorks, parametric CAD‑CFD loop', impact:'Optimized intake/exhaust manifold for pack thermal envelope; improved ΔT distribution across cells.', desc:`Designed intake/exhaust manifold with parametric studies to limit cell temperature spread and pressure drop. Coupled CFD with CAD for automated sweeps and rapid iteration.`, media:{ type:'image', src:'https://images.unsplash.com/photo-1617726080357-5f1f2b4ad3f8?q=80&w=1200&auto=format&fit=crop' }, links:[{label:'Slides', href:'#'}] },
-      { id:'hyperloop-track', title:'Hyperloop Track & Buffer Stop', subtitle:'CAD | FEA | Manufacturing', size:'s', badges:['Manufacturing'], tags:['manufacturing','product','fea'], img:'https://images.unsplash.com/photo-1538439907460-1596cafd4eff?q=80&w=1200&auto=format&fit=crop', role:'Design Engineer', tools:'SolidWorks, FEA (static/vibration), 3D printing, manual milling, lathe', impact:'Achieved target factor of safety while meeting inter-team geometric constraints.', desc:`Designed track alignment and buffer stop mechanism, validated with static and vibrational analyses. Led fabrication using mixed processes and jigs for tolerance control.`, media:{ type:'image', src:'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop' } },
-      { id:'assistive-makeup-brush', title:'Assistive Makeup Brush', subtitle:'Ergonomics | Prototyping', size:'m', badges:['Product Design'], tags:['product','manufacturing'], img:'https://images.unsplash.com/photo-1602143407151-7111542de6ca?q=80&w=1200&auto=format&fit=crop', role:'Product Designer', tools:'Ergonomic studies, SLA prototypes, silicone overmolding', impact:'Accessible for low‑grip‑strength users; improved torque control and comfort.', desc:`Developed ergonomic handle geometry and interchangeable heads; iterated via user tests and low‑fi foam cores to SLA.`, media:{ type:'image', src:'https://images.unsplash.com/photo-1610041516061-2a0b9afd1cd3?q=80&w=1200&auto=format&fit=crop' } }
+      {
+        id: 'rc-car',
+        title: 'RC Car — Custom Chassis & Drivetrain',
+        subtitle: 'CAD | FEA | Powertrain Integration',
+        size: 'm',
+        badges: ['Product Design','Manufacturing'],
+        tags: ['product','manufacturing','fea'],
+        img: 'https://images.unsplash.com/photo-1542144612-1bf8f9b30144?q=80&w=1200&auto=format&fit=crop',
+        role: 'Design & Build Lead',
+        tools: 'Fusion 360, SolidWorks, FEA (static), 3D printing, CNC',
+        impact: 'Reduced chassis mass ~20% while maintaining target stiffness; clean packaging for ESC/receiver/wiring.',
+        desc: `Designed modular chassis with serviceable mounts, verified stiffness with quick FEA, and fabricated via FDM + CNC. Tuned suspension geometry and gear ratio for acceleration and handling.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1612198182825-3d8d9b7b1cc6?q=80&w=1200&auto=format&fit=crop' }
+      },
+      {
+        id: 'hydroponics',
+        title: 'Automated Hydroponics System',
+        subtitle: 'Controls | Sensing | DFM',
+        size: 'l',
+        badges: ['Product Design'],
+        tags: ['product','manufacturing'],
+        img: 'https://images.unsplash.com/photo-1595257141848-21e0fd88a59b?q=80&w=1200&auto=format&fit=crop',
+        role: 'Systems Engineer',
+        tools: 'Fusion 360, Arduino, sensors (pH/EC/Temp), sheet-metal + SLA enclosures',
+        impact: 'Automated nutrient dosing and flow; maintain stable pH/EC within target bands; modular enclosure for maintenance.',
+        desc: `Developed closed-loop control for nutrient dosing with calibrated sensors; designed water-tight manifolds and quick-disconnects, plus DFM-friendly printed brackets.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1587502536263-9299a6b61c8a?q=80&w=1200&auto=format&fit=crop' },
+        links: [{label:'Build Notes', href:'#'}]
+      },
+      {
+        id: 'hyperloop-track',
+        title: 'Hyperloop Track — Texas Guadaloop',
+        subtitle: 'CAD | FEA | Manufacturing',
+        size: 's',
+        badges: ['Manufacturing','FEA'],
+        tags: ['manufacturing','fea','product'],
+        img: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop',
+        role: 'Design Engineer',
+        tools: 'SolidWorks, FEA (static/vibration), 3D printing, manual mill/lathe',
+        impact: 'Met factor-of-safety targets while satisfying inter-team constraints; improved assembly time with jigs.',
+        desc: `Designed track segments and buffer stop; validated with static and vibrational analyses; built fixtures and jigs to control tolerances during fabrication.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1538439907460-1596cafd4eff?q=80&w=1200&auto=format&fit=crop' }
+      },
+      {
+        id: 'longhorn-battery',
+        title: 'Longhorn Racing — Battery Cooling Intake/Outtake',
+        subtitle: 'Thermal | CFD | CAD Automation',
+        size: 'm',
+        badges: ['Thermal','Product Design'],
+        tags: ['thermal','product'],
+        img: 'https://images.unsplash.com/photo-1605901309584-818e25960a8b?q=80&w=1200&auto=format&fit=crop',
+        role: 'Thermal/CFD Engineer',
+        tools: 'ANSYS Fluent, Fusion 360/SolidWorks, parametric CAD–CFD loop',
+        impact: 'Improved ΔT distribution across cells; reduced pressure drop while meeting packaging constraints.',
+        desc: `Designed intake/outtake manifold, ran parametric CFD sweeps to balance temperature spread and pressure loss, and iterated geometry via CAD automation.`,
+        media: { type:'image', src:'https://images.unsplash.com/photo-1617726080357-5f1f2b4ad3f8?q=80&w=1200&auto=format&fit=crop' }
+      }
     ];
 
     const grid = document.getElementById('grid');
@@ -333,4 +402,3 @@
   </script>
 </body>
 </html>
-
