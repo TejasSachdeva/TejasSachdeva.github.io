@@ -43,7 +43,7 @@
     .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; color:transparent}
     .hero p{color:var(--muted); font-size:17px; max-width:760px}
 
-    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px}
+    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; padding:0; line-height:1.2}
     .section-title span{background:var(--grad-2); -webkit-background-clip:text; color:transparent}
 
     /* Projects grid (cards become links) */
@@ -112,7 +112,7 @@
     function Home(){
       return `
         <section class="hero">
-          <h1>Hi! I'm Tejas.</h1>
+          <h1>I design hardware solutions.</h1>
           <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
         </section>
 
@@ -185,11 +185,24 @@
     }
 
     function render(){
-      const hash = location.hash || '#/';
-      const parts = hash.split('/').filter(Boolean); // ["#", "project", "rc-car"] => ["project","rc-car"]
+      const raw = location.hash || '#/';
+      const path = raw.replace(/^#/, ''); // remove leading '#'
+      const parts = path.split('/').filter(Boolean); // e.g. ['project','rc-car']
+
       if(parts[0] === 'project' && parts[1]){
         app.innerHTML = ProjectDetail(parts[1]);
-      } else {
+        return;
+      }
+
+      // Default & any other route => Home
+      app.innerHTML = Home();
+
+      // Optional: if route is '/projects', scroll to projects after render
+      if(parts[0] === 'projects'){
+        const el = document.getElementById('projects');
+        el && el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    } else {
         app.innerHTML = Home();
       }
     }
@@ -199,4 +212,3 @@
   </script>
 </body>
 </html>
-
