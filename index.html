@@ -16,17 +16,12 @@
       --grad-1: linear-gradient(120deg, #6366f1, #06b6d4 60%, #22d3ee);
       --grad-2: linear-gradient(120deg, #a78bfa, #ec4899 60%, #f59e0b);
     }
-    html[data-theme="dark"]{
-      --bg:#0b1220; --text:#eef2ff; --muted:#a8b3cf; --card:#0f172a; --ring:#1f2937;
-      --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 40px 100px rgba(0,0,0,.55);
-    }
     body{margin:0; font-family:Inter,system-ui; color:var(--text); background:var(--bg)}
     a{color:#2563eb; text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:1100px; margin:0 auto; padding:0 20px}
 
     header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(255,255,255,.65); border-bottom:1px solid var(--ring)}
-    html[data-theme="dark"] header{background:rgba(13,17,23,.55)}
     .nav{display:flex; justify-content:space-between; align-items:center; min-height:74px}
     .brand__name{font-weight:800}
     .nav__links{display:flex; gap:1rem; align-items:center}
@@ -38,11 +33,9 @@
     .section-title{font-size:28px; font-weight:800; margin:50px 0 20px; text-align:center}
     .section-title span{background:var(--grad-2); -webkit-background-clip:text; color:transparent}
 
-    /* Skills */
     .skills-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:20px}
     .skill{border:1px solid var(--ring); background:var(--card); border-radius:12px; padding:.6rem .8rem; font-size:14px; color:var(--muted); text-align:center; box-shadow:var(--shadow)}
 
-    /* Projects */
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin:30px 0 90px}
     .card{background:var(--card); border:1px solid var(--ring); border-radius:18px; box-shadow:var(--shadow); padding:20px; transition:transform .2s, box-shadow .2s}
     .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
@@ -50,6 +43,8 @@
     .card-title i{color:#6366f1}
     .card-sub{font-size:14px; color:var(--muted); margin-bottom:10px}
     .card p{font-size:14px; line-height:1.5; color:var(--muted)}
+
+    .center-text{text-align:center; max-width:800px; margin:0 auto; line-height:1.7; color:var(--muted)}
 
     footer{border-top:1px solid var(--ring); padding:40px 0; color:var(--muted); text-align:center}
   </style>
@@ -70,7 +65,7 @@
 
   <main id="top">
     <section class="hero container">
-      <h1>Hi! This is Tejas.</h1>
+      <h1>I design hardware solutions.</h1>
       <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
     </section>
 
@@ -82,8 +77,10 @@
         <div class="skill">ANSYS Mechanical</div>
         <div class="skill">ANSYS Fluent</div>
         <div class="skill">FEA / CFD</div>
+        <div class="skill">Thermal & Structural Analysis</div>
         <div class="skill">GD&T</div>
         <div class="skill">DFM/DFA</div>
+        <div class="skill">Tolerance Stackups</div>
         <div class="skill">Rapid Prototyping</div>
         <div class="skill">3D Printing (FDM/SLA)</div>
         <div class="skill">CNC / Manual Machining</div>
@@ -122,17 +119,17 @@
 
     <section id="resume" class="container">
       <h2 class="section-title"><span>Resume</span></h2>
-      <p>Download a PDF copy of my current resume <a href="resume.pdf" download>here</a>.</p>
+      <p class="center-text">Download a PDF copy of my current resume <a href="Tejas Sachdeva Resume Tech.pdf" download>here</a>.</p>
     </section>
 
     <section id="about" class="container">
       <h2 class="section-title"><span>About</span></h2>
-      <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
+      <p class="center-text">I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
     </section>
 
     <section id="contact" class="container">
       <h2 class="section-title"><span>Contact</span></h2>
-      <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
+      <p class="center-text">Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
     </section>
   </main>
 
@@ -145,4 +142,5 @@
   </script>
 </body>
 </html>
+
 
