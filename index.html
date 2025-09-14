@@ -1,328 +1,776 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tejas Sachdeva | Portfolio</title>
-  <meta name="description" content="Mechanical Engineering portfolio focusing on product design, validation, FEA/CFD, and manufacturing." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f8fafc; --text:#0f172a; --muted:#475569; --card:#fff; --ring:#e2e8f0;
-      --shadow:0 10px 30px rgba(2,6,23,.08); --shadow-lg:0 30px 80px rgba(2,6,23,.12);
-      --grad-1:linear-gradient(120deg,#6366f1,#06b6d4 60%,#22d3ee);
-      --grad-2:linear-gradient(120deg,#a78bfa,#ec4899 60%,#f59e0b);
-      --link:#2563eb;
-    }
-    html[data-theme="dark"]{
-      --bg:#0b1220; --text:#eef2ff; --muted:#a8b3cf; --card:#0f172a; --ring:#1f2937;
-      --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 40px 100px rgba(0,0,0,.55);
-      --grad-1:linear-gradient(120deg,#22d3ee,#06b6d4 60%,#6366f1);
-      --grad-2:linear-gradient(120deg,#f59e0b,#ec4899 60%,#a78bfa);
-      --link:#93c5fd;
-    }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text); background:var(--bg)}
-    a{color:var(--link); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejas Sachdeva - Product Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            a { 
+                text-decoration: none;
+            }
+        }
 
-    header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(255,255,255,.65); border-bottom:1px solid var(--ring)}
-    html[data-theme="dark"] header{background:rgba(13,17,23,.55)}
-    .nav{display:flex; justify-content:space-between; align-items:center; min-height:74px}
-    .brand__name{font-weight:800}
-    .nav__links{display:flex; gap:1.5rem; align-items:center}
-    .theme-toggle{border:1px solid var(--ring); background:var(--card); padding:.4rem .6rem; border-radius:999px; cursor:pointer; box-shadow:var(--shadow)}
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
 
-    main section{text-align:left}
-    .hero{padding:64px 0 16px}
-    .hero h1{font-family:"Playfair Display",serif; font-size:clamp(32px,5.6vw,56px); margin:0 0 .5rem; background:var(--grad-1); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .hero p{color:var(--muted); font-size:17px; max-width:760px}
-    .hero__row{display:flex; align-items:center; gap:24px; flex-wrap:wrap}
-    .avatar{
-  width:180px; height:180px;
-  object-fit:cover; object-position:center;
-  border-radius:50%;
-  box-shadow:var(--shadow-lg);
-  border:1px solid var(--ring);
-  display:block;
-  flex-shrink:0;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .section-title{font-size:26px; font-weight:800; margin:28px 0 14px; text-align:left; line-height:1.2}
-    .section-title span{background:var(--grad-2); -webkit-background-clip:text; background-clip:text; color:transparent}
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
 
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:16px 0 60px}
-    .card{display:flex; flex-direction:column; justify-content:flex-start; text-decoration:none; color:inherit; background:var(--card); border:1px solid var(--ring); border-radius:16px; box-shadow:var(--shadow); padding:18px; transition:transform .2s, box-shadow .2s; text-align:left}
-    .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg)}
-    .card-title{font-weight:700; font-size:18px; margin:0 0 6px}
-    .card-sub{font-size:14px; color:var(--muted); margin:0 0 10px}
-    .card p{font-size:14px; line-height:1.55; color:var(--muted); margin:0}
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
 
-    footer{border-top:1px solid var(--ring); padding:34px 0; color:var(--muted); text-align:left}
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .detail{max-width:900px}
-    .detail h2{font-size:20px; margin:22px 0 10px; font-weight:800}
-    .detail .media{margin:16px 0}
-    .detail .media img{width:100%; border-radius:10px; box-shadow:var(--shadow)}
-    .detail .media figcaption{font-size:13px; color:var(--muted); margin-top:6px}
-    .detail p{color:var(--muted); line-height:1.7; text-align:left}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-    .resume-embed{
-  margin-top:12px;
-  border:1px solid var(--ring);
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  background:var(--card);
-}
-.resume-embed iframe{
-  width:100%;
-  height:min(85vh, 900px);
-  display:block;
-  border:0;
-}
-  </style>
+        .logo:hover {
+            color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: -2;
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.5s both;
+            color: #1d1d1f;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.3);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.7s both;
+            color: #667eea;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.2);
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s both;
+            line-height: 1.8;
+            color: #666;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.1);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: slideUp 1s ease 1.1s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1d1d1f;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .skill {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #e8ecff;
+            color: #667eea;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1d1d1f, #333);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 15px 25px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: white;
+            color: #1d1d1f;
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand__name">TEJAS SACHDEVA</div>
-      <nav class="nav__links">
-        <a href="#/projects">Projects</a>
-        <a href="#/resume">Resume</a>
-        <a href="#/about">About</a>
-        <a href="#/contact">Contact</a>
-        <button id="themeBtn" class="theme-toggle" aria-label="Toggle color theme">🌞/🌙</button>
-      </nav>
-    </div>
-  </header>
-
-  <main id="app" class="container" style="padding-bottom:40px">
-    <noscript>
-      <section class="hero">
-         <div class="hero__row">
-            <img class="avatar" src="./profile.jpg" alt="">
-            <div>
-            <h1>Hi! I'm Tejas.</h1>
-            <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
-          </div>
-        </div>
-      </section>
-    </noscript>
-  </main>
-
-  <footer>
-    <div class="container">© <span id="year"></span> Tejas Sachdeva. All rights reserved.</div>
-  </footer>
-
-  <script>
-    // Router bootstrap
-    if(!location.hash) location.hash = '#/';
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Theme toggle
-    const root=document.documentElement;
-    const savedTheme=localStorage.getItem('theme');
-    if(savedTheme) root.setAttribute('data-theme',savedTheme);
-    document.getElementById('themeBtn').addEventListener('click',()=>{
-      const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-      root.setAttribute('data-theme',next);
-      localStorage.setItem('theme',next);
-    });
-
-    const app=document.getElementById('app');
-
-    // Project metadata
-    const projects=[
-      {id:'rc-car',title:'RC Car — Custom Chassis & Drivetrain',sub:'DFM | Validation | GD&T'},
-      {id:'hydroponics',title:'Automated Hydroponics System',sub:'Design | Controls | System Integration '},
-      {id:'hyperloop-track',title:'Hyperloop Track — Texas Guadaloop',sub:'Design | Simulation | Manufacturing'},
-      {id:'longhorn-battery',title:'Battlebots',sub:'DFM | FEA'}
-    ];
-
-    // Case-study content (RC Car filled, others placeholders)
-    const detailCopy={
-      'rc-car':[`
-  <h2>Overview<\/h2>
-  <p>
-    For ME338 (Machine Elements) at UT Austin, our team designed and built a fully custom RC car under strict time and fabrication constraints. Starting with only a provided
-    DC motor and battery, we engineered the entire vehicle — chassis, Ackermann steering, and a rear-wheel drivetrain — to balance performance, manufacturability, and reliability.
-    I led the drivetrain and chassis design: CAD modeling, material selection, tolerance strategy, and simulation-driven validation.
-  <\/p>
-
-  <h2>Drivetrain: Gear-Based First Iteration<\/h2>
-  <p>
-    We began with a two-stage spur gear reduction (4:1 then 3:1, total 12:1) to translate the motor’s ~18,000&nbsp;RPM and 0.05&nbsp;N·m to roughly 1,500&nbsp;RPM and
-    ~0.6&nbsp;N·m at the wheels — an effective balance for a &lt;2&nbsp;kg platform. The choice was motivated by compact packaging, high ideal efficiency (~98%), and zero slip.
-    In practice, backlash in the 3D-printed PLA gears produced impact loading as the mesh alternated between drive and coast, increasing the Shigley dynamic factor (K<sub>v<\/sub>)
-    and amplifying tooth bending stress. Cyclic shock led to micro-pitting and accelerated wear; combined with PLA’s low hardness and creep at temperature, teeth degraded and
-    ultimately stripped. If we had stayed with gears, a move to glass-fiber-reinforced nylon or sintered metal would have been necessary to meet fatigue requirements.
-  <\/p>
-  <figure class="media">
-    <img src="images\/rc-gear-cad.png" alt="Initial gear-driven CAD assembly">
-    <figcaption>Figure 1: Initial gear-driven drivetrain CAD assembly.<\/figcaption>
-  <\/figure>
-
-  <h2>Drivetrain: Timing-Belt Redesign<\/h2>
-  <p>
-    To eliminate backlash and reduce shock, we redesigned to a two-stage HTD timing-belt system while preserving the overall 12:1 ratio (to keep vehicle dynamics familiar).
-    Stage&nbsp;1: 18T motor pulley → 54T jackshaft pulley (≈3:1). Stage&nbsp;2: 20T jackshaft pulley → 80T axle pulley (≈4:1). Belts (9&nbsp;mm width, fiberglass tensile cords)
-    provide positive engagement with elastic compliance that damps transients; the HTD profile’s rounded lobes resist ratcheting and tolerate minor misalignment.
-    We maintained &gt;150° wrap (passive idler) to keep 7–8 teeth engaged for load sharing and lower local tooth stress. We validated fit and belt line using PLA+ printed pulleys
-    and transitioned production components to PA12 for improved wear and creep resistance.
-  <\/p>
-  <p>
-    The redesign traded ~2–3% efficiency compared to ideal gears for dramatically better reliability, lower noise, and smoother torque delivery — precisely addressing
-    the failure modes driven by backlash and impact in the first iteration.
-  <\/p>
-  <figure class="media">
-    <img src="images\/rc-pulley-cad.png" alt="Pulley CAD model">
-    <figcaption>Figure 2: Custom pulley geometry sized to meet ratio, wrap, and tooth engagement targets.<\/figcaption>
-  <\/figure>
-  <figure class="media">
-    <img src="images\/rc-belt-assembly.png" alt="Completed belt-driven assembly">
-    <figcaption>Figure 3: Completed belt-driven assembly with jackshaft and idler for wrap control.<\/figcaption>
-  <\/figure>
-
-  <h2>GD&amp;T and Fits for Printed Components<\/h2>
-  <p>
-    FDM variability makes “CAD = part” a risky assumption, so we used a hole-basis system targeting H7 bores and g7 shafts for repeatable clearance fits on hubs and adapters.
-    Printed bores were modeled slightly undersized (≈4.90–4.94&nbsp;mm) and reamed to H7; where post-processing wasn’t practical, brass bushings were used. We avoided interference fits
-    in polymers due to creep and instead used D-bores and split-clamp hubs for torque transfer. GD&amp;T controls focused on true position of the bore to pulley OD, circular runout
-    within 0.05&nbsp;mm at tooth tips (to prevent belt walk), and perpendicularity of hub faces. Parts were inspected in batches (bore size, runout, D-flat width), with ~70–80% yield accepted
-    and the remainder reworked or scrapped, which stabilized assembly quality and reduced dynamic loading in service.
-  <\/p>
-  <figure class="media">
-    <img src="images\/fit-table.png" alt="H7\/g7 reference table">
-    <figcaption>Figure 4: Reference for H7\/g7 fits used on motor-to-hub interfaces.<\/figcaption>
-  <\/figure>
-
-  <h2>Simulation &amp; Validation<\/h2>
-  <p>
-    We exported simplified STEP models to ANSYS for FEA on the chassis rails, pulley hubs, and shaft adapters — the components most exposed to cyclic loading and stress concentration.
-    PLA+ was modeled at E≈3.5&nbsp;GPa and σ<sub>t<\/sub>≈60&nbsp;MPa; PA12 was included as a higher-strength alternative. Boundary conditions fixed the chassis at suspension points,
-    with peak wheel-shaft torque of ~0.6&nbsp;N·m and bonded contacts at hub interfaces. Meshes were refined to ~1&nbsp;mm around fillets and bores; convergence was verified.
-    Results mirrored testing: gear tooth root stresses &gt;70&nbsp;MPa (above PLA fatigue limit) explained stripping; belt-drive hub stresses dropped ~35% to ~38&nbsp;MPa (FOS≈1.6 in PLA+,
-    &gt;2.0 in PA12). The chassis deflected &lt;0.6&nbsp;mm under a 20&nbsp;N equivalent load. We thickened pulley-hub walls (2→3.5&nbsp;mm), added 2&nbsp;mm fillets at diameter transitions,
-    and standardized PA12 on critical parts to push safety factors above 2.0.
-  <\/p>
-  <figure class="media">
-    <img src="images\/rc-fea-pulley.png" alt="FEA stress analysis of pulley hub adapter">
-    <figcaption>Figure 5: Von Mises stress in pulley hub adapter; peak stresses reduced with fillets and thicker walls.<\/figcaption>
-  <\/figure>
-
-  <h2>Steering &amp; Vehicle Performance<\/h2>
-  <p>
-    We implemented Ackermann steering to align wheel turning radii, reducing scrub and improving maneuverability. CAD predicted a ~320&nbsp;mm turning radius; experimental measurement was
-    ~347&nbsp;mm, consistent with tolerance stack-up and compliance. The final car weighed 12.5&nbsp;N, achieved ~51&nbsp;minutes per charge, and the belt drivetrain maintained performance
-    without the catastrophic wear observed in the gear mesh. Motor thermal rise during extended runs highlighted a future opportunity for passive cooling and gearing\/timing optimization.
-  <\/p>
-
-  <h2>Outcome &amp; Takeaways<\/h2>
-  <p>
-    The shift from gear mesh to timing belts was pivotal: it removed backlash-induced shock loading, lowered stress concentrations, and delivered a quieter, more reliable car under race conditions.
-    The project underscored that robust hardware emerges at the intersection of theory and buildability: gear dynamics and Shigley-style sizing are necessary but insufficient without
-    attention to materials, tolerances, and real-world test feedback. That loop — model → build → fail → redesign — is what ultimately produced a durable, competition-ready system.
-  <\/p>
-
-  <h2>Gallery<\/h2>
-  <figure class="media">
-    <img src="images\/rc-chassis-laser.png" alt="Laser-cut chassis plates">
-    <figcaption>Laser-cut chassis plates prior to assembly.<\/figcaption>
-  <\/figure>
-  <figure class="media">
-    <img src="images\/rc-assembly.png" alt="Assembly in progress">
-    <figcaption>Assembly and belt line verification on the bench.<\/figcaption>
-  <\/figure>
-  <figure class="media">
-    <img src="images\/rc-track.png" alt="On-track testing">
-    <figcaption>On-track testing at Shigley Speedway.<\/figcaption>
-  <\/figure>
-`],
-      'hydroponics':['<p>Placeholder: system description and enclosures.<\/p>'],
-      'hyperloop-track':['<p>Placeholder: scope and objectives.<\/p>'],
-      'longhorn-battery':['<p>Placeholder: cooling objectives.<\/p>']
-    };
-
-    // Views
-    function Home(){
-      return `
-        <section class="hero">
-          <div class="hero__row">
-            <img class="avatar" src="./profile.jpg" alt="">
-            <div>
-              <h1>Hi! I'm Tejas.</h1>
-              <p>Product design enthusiast with hands-on experience in design, validation, and manufacturing — guiding hardware from concept to production.</p>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#hero" class="logo">TS</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
-          </div>
-        </section>
-        <section id="projects">
-          <h2 class="section-title"><span>Highlighted Projects</span></h2>
-          <div class="grid">
-            ${projects.map(p=>`
-              <a class="card" href="#/project/${p.id}">
-                <div class="card-title">${p.title}</div>
-                <div class="card-sub">${p.sub}</div>
-                <p>Click to view full description, role, tools, impact, and media for this project.</p>
-              </a>
-            `).join('')}
-          </div>
-        </section>
-        <section id="resume">
-  <h2 class="section-title"><span>Resume</span></h2>
-  <p>You can view my resume <a href="./Tejas%20Sachdeva%20Resume%20Tech.pdf" target="_blank" rel="noopener">here</a>.</p>
-        </section>
-        <section id="about">
-          <h2 class="section-title"><span>About</span></h2>
-          <p>I'm a hardware-focused engineer who enjoys the full frame-to-grave lifecycle: user research → CAD → analysis → prototyping → test/validation → manufacturing. Currently contributing to projects like Longhorn Racing, Hyperloop track systems, and structural optimization for oil & gas rigs.</p>
-        </section>
-        <section id="contact">
-          <h2 class="section-title"><span>Contact</span></h2>
-          <p>Email: <a href="mailto:tejas.sach@gmail.com">tejas.sach@gmail.com</a> · <a href="https://www.linkedin.com/in/tejas-sachdeva-b475a9249/" target="_blank">LinkedIn</a> · Austin, TX</p>
-        </section>`;
-    }
+        </div>
+    </nav>
 
-    function ProjectDetail(id){
-      const p=projects.find(x=>x.id===id);
-      if(!p) return `<section class="detail"><p>Project not found.</p></section>`;
-      const copy=detailCopy[id]||['<p>Description coming soon.</p>'];
-      return `
-        <a class="back" href="#/">← Back to projects</a>
-        <article class="detail">
-          <h1>${p.title}</h1>
-          <div class="sub">${p.sub}</div>
-          ${copy.join('')}
-        </article>`;
-    }
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tejas Sachdeva</h1>
+                <p class="subtitle">Product Designer & Hardware Engineer</p>
+                <p class="description">I design and build innovative hardware products from concept to production, combining creative vision with technical expertise to solve real-world problems.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function render(){
-      const raw=location.hash||'#/';
-      const path=raw.startsWith('#')?raw.slice(1):raw;
-      const parts=path.split('/').filter(Boolean);
-      if(parts[0]==='project'&&parts[1]){app.innerHTML=ProjectDetail(parts[1]);return;}
-      app.innerHTML=Home();
-      const sectionId=['projects','resume','about','contact'].includes(parts[0])?parts[0]:null;
-      if(sectionId){setTimeout(()=>{document.getElementById(sectionId)?.scrollIntoView({behavior:'smooth',block:'start'});},0);}
-    }
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">TS</div>
+                <div class="about-text">
+                    <p>I'm a passionate product design enthusiast with hands-on experience in design, validation, and manufacturing â€" guiding hardware from concept to production. My approach combines user-centered design thinking with technical feasibility to create products that are both innovative and manufacturable.</p>
+                    
+                    <p>With a background spanning industrial design, mechanical engineering, and user experience, I bring a holistic perspective to product development. I thrive on solving complex problems and turning abstract ideas into tangible, impactful products.</p>
+                    
+                    <div class="skills">
+                        <div class="skill">
+                            <h4>Industrial Design</h4>
+                        </div>
+                        <div class="skill">
+                            <h4>Mechanical Engineering</h4>
+                        </div>
+                        <div class="skill">
+                            <h4>UX/UI Design</h4>
+                        </div>
+                        <div class="skill">
+                            <h4>Prototyping</h4>
+                        </div>
+                        <div class="skill">
+                            <h4>Manufacturing</h4>
+                        </div>
+                        <div class="skill">
+                            <h4>3D Modeling</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    window.addEventListener('hashchange',render);
-    render();
-  </script>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <a href="rc_car.html">
+                        <div class="project-image">RC Car</div>
+                    </a>
+                    <h3 class="project-title">RC Car</h3>
+                    <p class="project-description">Designed and prototyped a next-generation health monitoring device with advanced sensors and intuitive user interface. Led the project from initial concept through manufacturing validation.</p>
+                    <div class="project-tags">
+                        <span class="tag">Industrial Design</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Health Tech</span>
+                        <span class="tag">Prototyping</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="lhr.html">
+                        <div class="project-image">Longhorn Racing</div>
+                    </a>
+                    <h3 class="project-title">Longhorn Racing Battery Cooling Intake</h3>
+                    <p class="project-description">Developed an integrated smart home control system focusing on seamless user experience and aesthetic integration with modern home environments.</p>
+                    <div class="project-tags">
+                        <span class="tag">UX Design</span>
+                        <span class="tag">Smart Home</span>
+                        <span class="tag">Interface Design</span>
+                        <span class="tag">User Research</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="ahs.html">
+                        <div class="project-image">AHS</div>
+                    </a>
+                    <h3 class="project-title">Automated Hydroponics System</h3>
+                    <p class="project-description">Created a sustainable consumer electronics product using renewable materials and innovative manufacturing processes while maintaining premium user experience.</p>
+                    <div class="project-tags">
+                        <span class="tag">Sustainability</span>
+                        <span class="tag">Materials</span>
+                        <span class="tag">Consumer Electronics</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <a href="battlebots.html">
+                        <div class="project-image">Battle Bots</div>
+                    </a>
+                    <h3 class="project-title">Battle Bots</h3>
+                    <p class="project-description">Designed and developed a companion mobile application with focus on intuitive navigation, accessibility, and seamless hardware integration.</p>
+                    <div class="project-tags">
+                        <span class="tag">Mobile Design</span>
+                        <span class="tag">UX/UI</span>
+                        <span class="tag">Accessibility</span>
+                        <span class="tag">Integration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Let's Create Something Amazing</h2>
+                <p>I'm always excited to discuss new opportunities and innovative projects. Whether you're looking for a product designer, hardware engineer, or creative collaborator, I'd love to hear from you.</p>
+                <div class="contact-links">
+                    <a href="mailto:tejas.sach@gmail.com" class="contact-link">Email Me</a>
+                    <a href="https://linkedin.com/in/tejas-sachdeva-b475a9249/" class="contact-link">LinkedIn</a>
+                    <a href="#" class="contact-link">Resume</a>
+                    <a href="tel:+13462189443" class="contact-link">Call Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Project data with placeholder content
+        const projectData = {
+            healthWearable: {
+                title: "Health Wearable",
+                tags: ["Industrial Design", "IoT", "Health Tech", "Prototyping"],
+                description: "Designed and prototyped a next-generation health monitoring device with advanced sensors and intuitive user interface. Led the project from initial concept through manufacturing validation.",
+                challenge: "This is placeholder text for the challenge section. You can replace this with details about the specific challenges faced during the health wearable project, such as miniaturization constraints, battery life optimization, or sensor accuracy requirements.",
+                solution: "This is placeholder text for the solution section. You can describe the innovative approaches taken to solve the challenges, including design decisions, technical implementations, and user experience considerations that made this project successful.",
+                results: "This is placeholder text for the results section. You can include metrics, user feedback, manufacturing outcomes, or any measurable impact the project had on users or the business."
+            },
+            smartHome: {
+                title: "Connected Home Interface",
+                tags: ["UX Design", "Smart Home", "Interface Design", "User Research"],
+                description: "Developed an integrated smart home control system focusing on seamless user experience and aesthetic integration with modern home environments.",
+                challenge: "This is placeholder text for the challenge section. You can detail the complexity of creating a unified interface for multiple smart home devices, user adoption barriers, or technical integration challenges.",
+                solution: "This is placeholder text for the solution section. Describe your approach to simplifying complex smart home interactions, your design process, and how you addressed user needs through research and iteration.",
+                results: "This is placeholder text for the results section. Include user satisfaction metrics, adoption rates, or how the interface improved the overall smart home experience for users."
+            },
+            ecoDevice: {
+                title: "Eco-Friendly Consumer Device",
+                tags: ["Sustainability", "Materials", "Consumer Electronics", "Innovation"],
+                description: "Created a sustainable consumer electronics product using renewable materials and innovative manufacturing processes while maintaining premium user experience.",
+                challenge: "This is placeholder text for the challenge section. You can discuss the challenges of balancing sustainability goals with performance requirements, material sourcing difficulties, or cost considerations.",
+                solution: "This is placeholder text for the solution section. Explain your sustainable design approach, material selection process, and how you maintained product quality while meeting environmental goals.",
+                results: "This is placeholder text for the results section. Include environmental impact metrics, cost savings, user reception, or industry recognition for sustainable innovation."
+            },
+            mobileApp: {
+                title: "Companion Mobile App",
+                tags: ["Mobile Design", "UX/UI", "Accessibility", "Integration"],
+                description: "Designed and developed a companion mobile application with focus on intuitive navigation, accessibility, and seamless hardware integration.",
+                challenge: "This is placeholder text for the challenge section. You can describe challenges related to cross-platform compatibility, accessibility requirements, or complex hardware integration needs.",
+                solution: "This is placeholder text for the solution section. Detail your design process, accessibility considerations, and technical solutions that enabled smooth hardware-software integration.",
+                results: "This is placeholder text for the results section. Include app store ratings, user engagement metrics, accessibility compliance achievements, or successful hardware integration outcomes."
+            }
+        };
+
+        // Function to show project details
+        function showProjectDetails(projectId) {
+            const project = projectData[projectId];
+            const modal = document.getElementById('projectModal');
+            
+            document.getElementById('modalTitle').textContent = project.title;
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalChallenge').textContent = project.challenge;
+            document.getElementById('modalSolution').textContent = project.solution;
+            document.getElementById('modalResults').textContent = project.results;
+            
+            // Populate tags
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = '';
+            project.tags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        // Function to close project modal
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target === modal) {
+                closeProjectModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 10 + 5) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function setupSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Intersection Observer for animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe project cards and other elements
+            document.querySelectorAll('.project-card, .skill').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            setupSmoothScrolling();
+            setupScrollAnimations();
+        });
+
+        // Listen for scroll events
+        window.addEventListener('scroll', handleNavbarScroll);
+
+        // Add hover effects to project cards
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
