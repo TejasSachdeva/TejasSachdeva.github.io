@@ -377,10 +377,10 @@
             <h1>Longhorn Racing</h1>
             <p class="subtitle">Custom Built Remote-Controlled Racing Vehicle</p>
             <div class="project-tags">
-                <span class="tag">Mechanical Design</span>
-                <span class="tag">Electronics</span>
-                <span class="tag">Control Systems</span>
-                <span class="tag">3D Printing</span>
+                <span class="tag">CFD</span>
+                <span class="tag">Design</span>
+                <span class="tag">Cross-Functionality</span>
+                <span class="tag">Manufacturing</span>
             </div>
         </div>
     </section>
@@ -391,13 +391,20 @@
             <div class="content-section">
                 <h2 class="section-title">Project Overview</h2>
                 <p class="section-text">
-                    This project involved designing and building a custom remote-controlled car from scratch, focusing on performance optimization, durability, and advanced control systems for competitive racing applications. The goal was to create a high-performance RC vehicle that could compete in local racing competitions while serving as a learning platform for mechanical design and electronics integration.
+                    This project focused on designing and optimizing a thermal intake and exhaust manifold for the solar vehicle’s battery system. The objective was to maintain safe operating temperatures under endurance race conditions, where battery packs experience fluctuating thermal loads. The system needed to balance airflow distribution, pressure drop, and heat dissipation to improve pack longevity and ensure reliable vehicle performance throughout extended runs.
                 </p>
+                </h2 class="section-title">Design and CAD-CFD Integration</h2>
                 <p class="section-text">
-                    [Add more details about your specific RC car project here - what inspired you to build it, what makes it unique, your goals, etc.]
+                    The cooling system consisted of a forward-facing intake duct paired with an exhaust plenum that directed airflow across the battery pack. CAD models were iteratively refined in SolidWorks and exported into ANSYS Fluent for analysis. Parametric design studies varied duct geometry, bend radii, and flow splitters to minimize separation zones and balance airflow across modules. By integrating CAD and CFD workflows, we could quickly iterate designs while tracking the effect of geometry changes on both flow uniformity and thermal gradients. Trade-offs centered around maximizing convective cooling efficiency without exceeding the available fan capacity.
                 </p>
-            </div>
-
+                <h2 class="section-title">Simulation and Validation</h2>
+                <p class="section-text">
+                    Steady-state and transient CFD analyses quantified temperature distribution, heat flux, and pressure drop across the system. Initial simulations revealed stagnation regions that led to cell-level hot spots. By reshaping duct transitions and optimizing outlet geometry, we reduced localized peak temperatures by over 20% and achieved more uniform cooling across the pack. Pressure drop was maintained below ~150 Pa, ensuring compatibility with the team’s selected fans. Final results showed that the design effectively prevented thermal runaway risks, keeping cells within the safe operating envelope during simulated endurance cycles.
+                </p>
+                <h2 class="section-title">Manufacturing and Implementation</h2>
+                <p class="section-text">
+                    The final intake and exhaust manifold were 3D printed using PETG, chosen for its balance of strength, thermal resistance, and ease of fabrication. Smooth internal channels reduced turbulence, while mounting bosses and alignment features ensured repeatable assembly with the battery housing. Considerations were also made for future instrumentation, including thermocouple and flow sensor integration, to validate CFD predictions with on-track data. The PETG prototype provided a durable, lightweight solution that could be rapidly iterated for subsequent design cycles.
+                </p>    
             <!-- Image Gallery -->
             <div class="image-gallery">
                 <div class="gallery-image">RC Car - Front View</div>
