@@ -391,19 +391,27 @@
             <div class="content-section">
                 <h2 class="section-title">Project Overview</h2>
                 <p class="section-text">
-                    This project involved designing and building a custom remote-controlled car from scratch, focusing on performance optimization, durability, and advanced control systems for competitive racing applications. The goal was to create a high-performance RC vehicle that could compete in local racing competitions while serving as a learning platform for mechanical design and electronics integration.
-                </p>
+                    This project involved designing and building an automated hydroponics system to provide reliable year-round plant growth in underserved communities in West Lafayette, Indiana. The goal was to develop a low-cost weather-resistant and easy-to-use system that could run with minimal human input while still applying professional engineering practices in CAD modeling, automation, and validation.
+                <h2 class="section-title">Design for Simplicity</h2>
                 <p class="section-text">
-                    [Add more details about your specific RC car project here - what inspired you to build it, what makes it unique, your goals, etc.]
-                </p>
+                    All major subsystems were modeled in Fusion 360. The grow modules were 3D-printed with optimized channel geometry to maintain uniform nutrient flow and reduce clogging. Net cup holders were parametrically modeled for flexibility across plant types. The frame used aluminum extrusion for modularity and acrylic panels for reservoir and electronics housing. CAD assemblies were checked for tolerances so users could assemble the system without tools. Fluid circulation was driven by a 12V submersible pump with a gravity-fed return line. An Arduino controlled pump cycling, monitored pH and temperature, and triggered shutoffs when conditions drifted outside the safe range.
+                <h2 class="section-title">Constraints</h2>
+                <p class="section-text">
+                    Because the system was deployed outdoors in Indiana where winter temperatures drop well below freezing, weather resistance was critical. PETG and ABS were chosen for printed components while food-grade HDPE was used for the reservoir and aluminum extrusion for structural strength. Electronics were enclosed in waterproof housings with IP67-rated connectors. Cost and replicability were also key constraints, so all parts were chosen from widely available components such as PVC tubing, DC pumps, and off-the-shelf sensors. The project schedule was managed with Gantt charts to keep design, prototyping, and testing on track. We also consulted hydroponics experts ranging from university researchers to community growers to refine nutrient cycling strategies and ensure ease of use.
+                <h2 class="section-title">Validation</h2>
+                <p class="section-text">
+                    The design was first validated in Fusion 360 simulations for flow distribution and structural loads. Physical testing followed with leak checks, pressure measurements, and endurance runs. Flow rates across all grow sites held within ±5% of target values. Sensors were calibrated against lab standards for pH and temperature. The pump completed more than 500 cycles of 15 minutes on and 45 minutes off without failure. Electrical validation included thermal checks on MOSFETs and relays to confirm safe operation. Expert feedback drove changes to manifold sizing and the addition of a mesh filter to reduce clogging.
+                <h2 class="section-title">Results</h2>
+                <p class="section-text">
+                    The final system maintained stable operating conditions with pH between 5.5 and 6.5, flow rate near 1.5 L/min, and solution temperature between 18 and 24°C. The Fusion 360–designed grow modules were strong, weather resistant, and quick to assemble with setup times under 30 minutes. Deployed units in West Lafayette produced consistent yields of lettuce, basil, and spinach with more than 90% survival. The project showed that CAD-driven design, automated controls, structured project planning, and expert input can be combined to deliver practical engineering solutions for food insecurity in cold climates.
             </div>
 
             <!-- Image Gallery -->
             <div class="image-gallery">
-                <div class="gallery-image">RC Car - Front View</div>
-                <div class="gallery-image">RC Car - Side Profile</div>
-                <div class="gallery-image">Internal Components</div>
-                <div class="gallery-image">Control System</div>
+                <div class="gallery-image"></div>
+                <div class="gallery-image"></div>
+                <div class="gallery-image"></div>
+                <div class="gallery-image"></div>
             </div>
 
             <!-- Technical Specifications -->
@@ -411,8 +419,16 @@
                 <h2 class="section-title">Technical Specifications</h2>
                 <div class="specs-grid">
                     <div class="spec-card">
-                        <div class="spec-title">Top Speed</div>
-                        <div class="spec-value">[Add your speed] mph</div>
+                        <div class="spec-title">Mechanical / Structural</div>
+                        <div class="spec-value">
+                            <ul> 
+                                <li>Frame: 20×20 mm aluminum extrusion with acrylic panels </li>
+                                <li>Grow modules: 3D-printed PETG/ABS, 2 mm wall thickness, 0.2 mm layer height</li> 
+                                <li>Net cups: 2 in (50 mm) diameter, parametric design for alternative sizes </li>
+                                <li>Reservoir capacity: 15 L food-grade HDPE tank</li>
+                                <li>System footprint: 600 × 400 × 500 mm</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="spec-card">
                         <div class="spec-title">Weight</div>
