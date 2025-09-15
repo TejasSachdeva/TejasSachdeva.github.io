@@ -168,7 +168,7 @@
         }
 
         /* Image Gallery */
-        .image-gallery {
+       .image-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
@@ -177,7 +177,7 @@
 
         .gallery-image {
             width: 100%;
-            height: 250px;
+            height: 400px; /* Increased height for portrait images */
             background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 15px;
             overflow: hidden; /* This is key for containing the image */
@@ -193,8 +193,7 @@
             height: 100%;
             object-fit: cover; /* This makes images fit properly */
             display: block;
-        }       
-
+        }
         /* Specifications Grid */
         .specs-grid {
             display: grid;
