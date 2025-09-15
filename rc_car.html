@@ -394,7 +394,81 @@
                     This project involved designing and building a custom remote-controlled car from scratch, focusing on performance optimization, durability, and advanced control systems for competitive racing applications. The goal was to create a high-performance RC vehicle that could compete in local racing competitions while serving as a learning platform for mechanical design and electronics integration.
                 </p>
                 <p class="section-text">
-                    [Add more details about your specific RC car project here - what inspired you to build it, what makes it unique, your goals, etc.]
+                    <h2>Drivetrain: Gear-Based First Iteration<\/h2>
+  <p>
+    We began with a two-stage spur gear reduction (4:1 then 3:1, total 12:1) to translate the motor’s ~18,000&nbsp;RPM and 0.05&nbsp;N·m to roughly 1,500&nbsp;RPM and
+    ~0.6&nbsp;N·m at the wheels — an effective balance for a &lt;2&nbsp;kg platform. The choice was motivated by compact packaging, high ideal efficiency (~98%), and zero slip.
+    In practice, backlash in the 3D-printed PLA gears produced impact loading as the mesh alternated between drive and coast, increasing the Shigley dynamic factor (K<sub>v<\/sub>)
+    and amplifying tooth bending stress. Cyclic shock led to micro-pitting and accelerated wear; combined with PLA’s low hardness and creep at temperature, teeth degraded and
+    ultimately stripped. If we had stayed with gears, a move to glass-fiber-reinforced nylon or sintered metal would have been necessary to meet fatigue requirements.
+  <\/p>
+  <figure class="media">
+    <img src="images\/rc-gear-cad.png" alt="Initial gear-driven CAD assembly">
+    <figcaption>Figure 1: Initial gear-driven drivetrain CAD assembly.<\/figcaption>
+  <\/figure>
+
+  <h2>Drivetrain: Timing-Belt Redesign<\/h2>
+  <p>
+    To eliminate backlash and reduce shock, we redesigned to a two-stage HTD timing-belt system while preserving the overall 12:1 ratio (to keep vehicle dynamics familiar).
+    Stage&nbsp;1: 18T motor pulley → 54T jackshaft pulley (≈3:1). Stage&nbsp;2: 20T jackshaft pulley → 80T axle pulley (≈4:1). Belts (9&nbsp;mm width, fiberglass tensile cords)
+    provide positive engagement with elastic compliance that damps transients; the HTD profile’s rounded lobes resist ratcheting and tolerate minor misalignment.
+    We maintained &gt;150° wrap (passive idler) to keep 7–8 teeth engaged for load sharing and lower local tooth stress. We validated fit and belt line using PLA+ printed pulleys
+    and transitioned production components to PA12 for improved wear and creep resistance.
+  <\/p>
+  <p>
+    The redesign traded ~2–3% efficiency compared to ideal gears for dramatically better reliability, lower noise, and smoother torque delivery — precisely addressing
+    the failure modes driven by backlash and impact in the first iteration.
+  <\/p>
+  <figure class="media">
+    <img src="images\/rc-pulley-cad.png" alt="Pulley CAD model">
+    <figcaption>Figure 2: Custom pulley geometry sized to meet ratio, wrap, and tooth engagement targets.<\/figcaption>
+  <\/figure>
+  <figure class="media">
+    <img src="images\/rc-belt-assembly.png" alt="Completed belt-driven assembly">
+    <figcaption>Figure 3: Completed belt-driven assembly with jackshaft and idler for wrap control.<\/figcaption>
+  <\/figure>
+
+  <h2>GD&amp;T and Fits for Printed Components<\/h2>
+  <p>
+    FDM variability makes “CAD = part” a risky assumption, so we used a hole-basis system targeting H7 bores and g7 shafts for repeatable clearance fits on hubs and adapters.
+    Printed bores were modeled slightly undersized (≈4.90–4.94&nbsp;mm) and reamed to H7; where post-processing wasn’t practical, brass bushings were used. We avoided interference fits
+    in polymers due to creep and instead used D-bores and split-clamp hubs for torque transfer. GD&amp;T controls focused on true position of the bore to pulley OD, circular runout
+    within 0.05&nbsp;mm at tooth tips (to prevent belt walk), and perpendicularity of hub faces. Parts were inspected in batches (bore size, runout, D-flat width), with ~70–80% yield accepted
+    and the remainder reworked or scrapped, which stabilized assembly quality and reduced dynamic loading in service.
+  <\/p>
+  <figure class="media">
+    <img src="images\/fit-table.png" alt="H7\/g7 reference table">
+    <figcaption>Figure 4: Reference for H7\/g7 fits used on motor-to-hub interfaces.<\/figcaption>
+  <\/figure>
+
+  <h2>Simulation &amp; Validation<\/h2>
+  <p>
+    We exported simplified STEP models to ANSYS for FEA on the chassis rails, pulley hubs, and shaft adapters — the components most exposed to cyclic loading and stress concentration.
+    PLA+ was modeled at E≈3.5&nbsp;GPa and σ<sub>t<\/sub>≈60&nbsp;MPa; PA12 was included as a higher-strength alternative. Boundary conditions fixed the chassis at suspension points,
+    with peak wheel-shaft torque of ~0.6&nbsp;N·m and bonded contacts at hub interfaces. Meshes were refined to ~1&nbsp;mm around fillets and bores; convergence was verified.
+    Results mirrored testing: gear tooth root stresses &gt;70&nbsp;MPa (above PLA fatigue limit) explained stripping; belt-drive hub stresses dropped ~35% to ~38&nbsp;MPa (FOS≈1.6 in PLA+,
+    &gt;2.0 in PA12). The chassis deflected &lt;0.6&nbsp;mm under a 20&nbsp;N equivalent load. We thickened pulley-hub walls (2→3.5&nbsp;mm), added 2&nbsp;mm fillets at diameter transitions,
+    and standardized PA12 on critical parts to push safety factors above 2.0.
+  <\/p>
+  <figure class="media">
+    <img src="images\/rc-fea-pulley.png" alt="FEA stress analysis of pulley hub adapter">
+    <figcaption>Figure 5: Von Mises stress in pulley hub adapter; peak stresses reduced with fillets and thicker walls.<\/figcaption>
+  <\/figure>
+
+  <h2>Steering &amp; Vehicle Performance<\/h2>
+  <p>
+    We implemented Ackermann steering to align wheel turning radii, reducing scrub and improving maneuverability. CAD predicted a ~320&nbsp;mm turning radius; experimental measurement was
+    ~347&nbsp;mm, consistent with tolerance stack-up and compliance. The final car weighed 12.5&nbsp;N, achieved ~51&nbsp;minutes per charge, and the belt drivetrain maintained performance
+    without the catastrophic wear observed in the gear mesh. Motor thermal rise during extended runs highlighted a future opportunity for passive cooling and gearing\/timing optimization.
+  <\/p>
+
+  <h2>Outcome &amp; Takeaways<\/h2>
+  <p>
+    The shift from gear mesh to timing belts was pivotal: it removed backlash-induced shock loading, lowered stress concentrations, and delivered a quieter, more reliable car under race conditions.
+    The project underscored that robust hardware emerges at the intersection of theory and buildability: gear dynamics and Shigley-style sizing are necessary but insufficient without
+    attention to materials, tolerances, and real-world test feedback. That loop — model → build → fail → redesign — is what ultimately produced a durable, competition-ready system.
+  <\/p>
+
                 </p>
             </div>
 
