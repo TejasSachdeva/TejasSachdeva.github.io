@@ -399,7 +399,12 @@
                 <br>
                 <br> 
                     By contrast, we re-engineered the drivetrain with a synchronous belt system to reduce these drawbacks. The first stage used a 20-tooth HTD pulley on the motor driving a 60-tooth pulley on the jackshaft (≈3:1), while the second stage used a 24-tooth pulley to an 84-tooth axle pulley (≈3.5:1), giving a total reduction of ~10.5:1—close enough to preserve acceleration and stall torque characteristics. Belts were specified at 10 mm width with aramid cords, chosen for their low stretch and high fatigue resistance. With wrap angles held above 160° using simple idlers, each stage maintained 7–9 teeth in contact, minimizing tooth shear and ratcheting. Efficiency dropped slightly to ~94%, but the belts absorbed transient loads through elastic deformation, reducing peak stresses by nearly 25% compared to gears. Noise levels dropped substantially, torque delivery became smoother, and vibration-induced wear was essentially eliminated. For rapid prototyping we printed pulleys in PETG at 35% infill, which held up for testing, before moving to machined aluminum for production. Overall, the belt approach traded a small hit in efficiency for far greater reliability, quieter operation, and much lower dynamic loading—an advantageous compromise for this application.
-            </div>
+                <h2 class="section-title">GD&T</h2>
+                <p class="section-text">
+                    Because FDM printing varies in accuracy, we didn’t assume “CAD = part.” For holes and shafts, we used a hole-basis system targeting H7/g7 clearance fits. Bores were modeled slightly undersized (≈4.90–4.94 mm) and reamed to H7; where reaming wasn’t practical, brass bushings were added.
+                    For torque transfer, we avoided interference fits in polymers (to prevent creep) and instead used D-bores and split-clamp hubs. GD&T was applied to ensure the bore was aligned with the pulley OD, circular runout at the teeth stayed within 0.05 mm (to prevent belt walk), and hub faces remained perpendicular. This effectively created a controlled, press-fit-like system that was reliable in plastic.
+                    Parts were inspected in batches for bore size, runout, and D-flat width. About 70–80% passed and the rest were reworked or scrapped. This stabilized assembly quality and reduced dynamic loading during operation.
+                </div>
 
             <!-- Image Gallery -->
             <div class="image-gallery">
