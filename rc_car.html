@@ -393,9 +393,13 @@
                 <p class="section-text">
                     This project involved designing and building a custom remote-controlled car from scratch, focusing on performance optimization, durability, and advanced control systems for competitive racing applications. The goal was to create a high-performance RC vehicle that could compete in local racing competitions while serving as a learning platform for mechanical design and electronics integration.
                 </p>
+                <h2 class="section-title">Drivetrain: Gear-Based First Iteration</h2>
                 <p class="section-text">
-                    </h2>Drivetrain</h2>
-                </p>
+                    We began with a two-stage spur gear reduction (4:1 then 3:1, total 12:1) to translate the motor’s ~18,000&nbsp;RPM and 0.05&nbsp;N·m to roughly 1,500&nbsp;RPM and
+                     ~0.6&nbsp;N·m at the wheels — an effective balance for a &lt;2&nbsp;kg platform. The choice was motivated by compact packaging, high ideal efficiency (~98%), and zero slip.
+                    In practice, backlash in the 3D-printed PLA gears produced impact loading as the mesh alternated between drive and coast, increasing the Shigley dynamic factor (K<sub>v<\/sub>)
+                    and amplifying tooth bending stress. Cyclic shock led to micro-pitting and accelerated wear; combined with PLA’s low hardness and creep at temperature, teeth degraded and
+                    ultimately stripped. If we had stayed with gears, a move to glass-fiber-reinforced nylon or sintered metal would have been necessary to meet fatigue requirements.
             </div>
 
             <!-- Image Gallery -->
