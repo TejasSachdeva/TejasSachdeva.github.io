@@ -178,19 +178,32 @@
         .gallery-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 500;
+            overflow: hidden;
             transition: transform 0.3s ease;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .gallery-image:hover {
             transform: scale(1.02);
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            text-align: center;
         }
 
         /* Specifications Grid */
@@ -392,23 +405,23 @@
             <div class="content-section">
                 <h2 class="section-title">Design Approach</h2>
                 <p class="section-text">
-                    The chassis was constructed as a rigid, load-bearing structure with a layered frame configuration. High-strength aluminum alloys were selected for their combination of stiffness, toughness, and machinability, with finite element analysis guiding geometry modifications to reduce localized stress concentrations. Reinforcement ribs and gusset plates were incorporated into the frame to distribute impact loads evenly, minimizing the risk of plastic deformation during head-on collisions. The drivetrain was designed around a four-wheel layout, each powered by high-torque brushed DC motors coupled with a direct chain reduction system. This configuration ensured consistent torque delivery, precise control, and redundancy in case of localized drivetrain damage. The overall geometry maintained a low center of gravity to improve stability, while the protective outer shell shielded motors, electronics, and structural joints from direct hits.
+                    The chassis was plasma-cut from aluminum plate and configured as a rigid load-bearing frame with reinforced joints to resist high-magnitude impacts. Structural ribs and gusseting were strategically positioned to reduce stress concentrations at motor mounts and corner junctions, which are known weak points in combat environments. The drivetrain featured a custom-designed, 3D-printed belted gearbox, selected over a rigid geartrain for its ability to dampen transient loads while still transmitting ample torque. Simulations were conducted to validate the motor and power delivery system, confirming that battery capacity, pushing power, and free speed met performance requirements for sustained competition. The four-wheel drive layout provided high traction and maneuverability, with the belted reduction optimizing acceleration without sacrificing top-end speed.
                 </p>
             </div>
             <div class="content-section">
                 <h2 class="section-title">Manufacturing</h2>
                 <p class="section-text">
-                    Fabrication processes emphasized both precision and resilience. Frame rails and reinforcement plates were cut on a waterjet system to achieve tight tolerances and prevent misalignments during assembly. Welding was selectively applied in high-stress joints, while bolted connections were used where rapid disassembly was required for maintenance. The drive motor housings were machined to exact fits to reduce vibration and improve load transfer efficiency under repeated impacts. Polymer-based armor panels were integrated at critical zones to provide energy absorption without adding excessive mass. Throughout the build process, GD&T principles were applied to ensure proper alignment of shafts, bearings, and mounting features, ultimately leading to a drivetrain that could endure prolonged mechanical shocks without significant loss of performance.
+                   Fabrication combined subtractive and additive processes to balance strength, precision, and adaptability. The chassis plates were plasma-cut to ensure accurate tolerances and minimize material waste, while reinforcement plates were machined to align with SolidWorks GD&T specifications. The drivetrain housings and belted gearbox were 3D printed, allowing rapid iteration during prototyping and effective integration with off-the-shelf pulleys and shafts. Assembly used a hybrid of bolted fasteners for serviceability and welded joints at high-stress interfaces for maximum rigidity. This approach produced a lightweight yet robust structural framework that met the competition’s strict weight classification.
                 </p>
             </div>
             <div class="content-section">
                 <h2 class="section-title">Testing and Validation</h2>
                 <p class="section-text">
-                    Validation centered on structural performance, with extensive use of SolidWorks FEA to predict how the chassis and drivetrain framework would respond under competition loads. Static structural simulations were performed to evaluate stress distribution, with Von Mises stress plots and safety factor contours guiding material thickness and reinforcement decisions. Particular attention was given to motor mount regions and frame junctions, where localized stress concentrations could cause premature yielding. Displacement analysis was conducted to confirm that deflections remained within tolerances, ensuring drivetrain alignment even under peak impact forces.
+                    Validation emphasized structural reliability and drivetrain performance. Using SolidWorks FEA, the chassis was analyzed under simulated impact conditions with Von Mises stress plots, safety factor mapping, and displacement analysis guiding reinforcement in critical regions. Buckling studies were conducted on slender frame members to confirm resistance to instability, while simplified fatigue simulations ensured repeated impacts would not initiate crack propagation over multiple matches. The belted gearbox was analyzed for torque transfer and alignment, with emphasis on maintaining belt tension under dynamic loads.
                     <br>
                     Additional structural studies included buckling analysis of slender frame members to rule out instability under compressive loads, and modal analysis to verify that natural frequencies were well separated from excitation frequencies caused by drivetrain vibration. Simplified fatigue simulations were also carried out to approximate the effect of repeated impacts, ensuring the chassis could endure cyclic stresses without crack initiation.
                     <br>
-                    Physical validation tests reinforced the FEA results. Drop-weight impact trials and staged collisions showed strong agreement with simulation predictions, as no permanent deformation occurred in high-stress areas. The combination of simulation-driven design refinement and destructive physical testing confirmed that the reinforced chassis could withstand the repeated, unpredictable forces characteristic of BattleBots competition.
+                    Physical testing mirrored the simulations. Mobility trials confirmed responsive handling and drivetrain efficiency, while drop-weight and staged impact tests validated that the reinforced chassis absorbed forces without yielding. Extended runtime tests ensured that the motors and battery system delivered consistent torque output while maintaining safe thermal operating limits. The drivetrain in particular demonstrated high responsiveness and ease of control, aligning with predicted performance from simulation.
                 </p>
             </div>
             <div class="content-section">
@@ -419,10 +432,30 @@
             </div>
             <!-- Image Gallery -->
             <div class="image-gallery">
-                <div class="gallery-image">RC Car - Front View</div>
-                <div class="gallery-image">RC Car - Side Profile</div>
-                <div class="gallery-image">Internal Components</div>
-                <div class="gallery-image">Control System</div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/rc-car-front.jpg" alt="RC Car Front View">
+                    </div>
+                    <h4 class="gallery-title">RC Car - Front View</h4>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/rc-car-side.jpg" alt="RC Car Side Profile">
+                    </div>
+                    <h4 class="gallery-title">RC Car - Side Profile</h4>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/rc-car-internals.jpg" alt="Internal Components">
+                    </div>
+                    <h4 class="gallery-title">Internal Components</h4>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/rc-car-control.jpg" alt="Control System">
+                    </div>
+                    <h4 class="gallery-title">Control System</h4>
+                </div>
             </div>
 
             <!-- Technical Specifications -->
