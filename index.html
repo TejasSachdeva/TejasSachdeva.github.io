@@ -5,21 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tejas Sachdeva - Product Designer</title>
     <style>
+        /* CSS Variables for theming */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1d1d1f;
+            --text-secondary: #666;
+            --card-bg: #ffffff;
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-hover: rgba(0,0,0,0.15);
+            --border-color: #e1e5e9;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --nav-bg-scrolled: rgba(255, 255, 255, 0.98);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: rgba(255,255,255,0.03);
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --card-bg: rgba(255,255,255,0.08);
+            --shadow: rgba(0,0,0,0.3);
+            --shadow-hover: rgba(0,0,0,0.4);
+            --border-color: rgba(255,255,255,0.1);
+            --nav-bg: rgba(10, 10, 10, 0.95);
+            --nav-bg-scrolled: rgba(10, 10, 10, 0.98);
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+            background-attachment: fixed;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            a { 
-                text-decoration: none;
-            }
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        a { 
+            text-decoration: none;
         }
 
         body {
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #1d1d1f;
+            color: var(--text-primary);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow-x: hidden;
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--shadow-hover);
+        }
+
+        .toggle-slider {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 60px;
+            height: 30px;
+            background: var(--bg-secondary);
+            border-radius: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(0);
+        }
+
+        [data-theme="dark"] .toggle-icon {
+            transform: translateX(30px);
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
         }
 
         .container {
@@ -33,7 +122,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 15px 0;
@@ -41,8 +130,8 @@
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: var(--nav-bg-scrolled);
+            box-shadow: 0 2px 20px var(--shadow);
         }
 
         .nav-content {
@@ -54,7 +143,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1d1d1f;
+            color: var(--text-primary);
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -73,7 +162,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #1d1d1f;
+            color: var(--text-primary);
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
@@ -119,6 +208,10 @@
             z-index: -2;
         }
 
+        [data-theme="dark"] .hero-background {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+        }
+
         .hero-particles {
             position: absolute;
             width: 100%;
@@ -145,7 +238,7 @@
             margin-bottom: 1rem;
             opacity: 0;
             animation: slideUp 1s ease 0.5s both;
-            color: #1d1d1f;
+            color: var(--text-primary);
             text-shadow: 0 2px 4px rgba(255,255,255,0.3);
         }
 
@@ -159,6 +252,10 @@
             text-shadow: 0 1px 2px rgba(255,255,255,0.2);
         }
 
+        [data-theme="dark"] .hero-content .subtitle {
+            color: #4facfe;
+        }
+
         .hero-content .description {
             font-size: 1.1rem;
             max-width: 600px;
@@ -166,7 +263,7 @@
             opacity: 0;
             animation: slideUp 1s ease 0.9s both;
             line-height: 1.8;
-            color: #666;
+            color: var(--text-secondary);
             text-shadow: 0 1px 2px rgba(255,255,255,0.1);
         }
 
@@ -187,24 +284,21 @@
             display: inline-block;
         }
 
-        .btn-primary {
-            background: white;
+        .btn-primary, .btn-secondary {
+            background: var(--card-bg);
             color: #667eea;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
         }
 
-        .btn-primary:hover {
+        [data-theme="dark"] .btn-primary, 
+        [data-theme="dark"] .btn-secondary {
+            color: #4facfe;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px var(--shadow-hover);
         }
 
         @keyframes slideUp {
@@ -221,11 +315,11 @@
         /* Sections */
         section {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-primary);
         }
 
         section:nth-child(even) {
-            background: #f8f9fa;
+            background: var(--bg-secondary);
         }
 
         .section-title {
@@ -233,21 +327,15 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            color: #1d1d1f;
+            color: var(--text-primary);
         }
 
         /* About Section */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
         #about .section-title {
             text-align: left;
             margin: 0 0 1rem 0;
             font-size: 2.5rem;
-            color: #333;
+            color: var(--text-primary);
         }
 
         .about-content {
@@ -275,7 +363,7 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #666;
+            color: var(--text-secondary);
         }
 
         /* Projects Section */
@@ -288,21 +376,23 @@
         }
 
         .project-card {
-            background: white;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px var(--shadow);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             height: 100%;
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(10px);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px var(--shadow-hover);
         }
 
         .project-card::before {
@@ -313,6 +403,10 @@
             width: 100%;
             height: 8px;
             background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        [data-theme="dark"] .project-card::before {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
         }
 
         .project-image img {
@@ -327,20 +421,23 @@
             transform: scale(1.05);
         }
 
-        /* Keep the gradient as fallback for projects without images */
         .project-image.no-image {
             background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        [data-theme="dark"] .project-image.no-image {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
         }
 
         .project-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 10px;
-            color: #1d1d1f;
+            color: var(--text-primary);
         }
 
         .project-description {
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 20px;
             line-height: 1.6;
         }
@@ -353,12 +450,17 @@
         }
 
         .tag {
-            background: #e8ecff;
+            background: var(--bg-secondary);
             color: #667eea;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .tag {
+            color: #4facfe;
         }
 
         .project-links {
@@ -373,9 +475,18 @@
             transition: color 0.3s ease;
         }
 
+        [data-theme="dark"] .project-link {
+            color: #4facfe;
+        }
+
         .project-link:hover {
             color: #764ba2;
         }
+
+        [data-theme="dark"] .project-link:hover {
+            color: #00f2fe;
+        }
+
         a.card-link {
             text-decoration: none;
             color: inherit;
@@ -392,6 +503,10 @@
         .contact {
             background: linear-gradient(135deg, #1d1d1f, #333);
             color: white;
+        }
+
+        [data-theme="dark"] .contact {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
         }
 
         .contact .section-title {
@@ -419,6 +534,7 @@
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .contact-link:hover {
@@ -426,19 +542,25 @@
             color: #1d1d1f;
             transform: translateY(-3px);
         }
+
         /* Hamburger Menu Button */
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: #1d1d1f;
+            color: var(--text-primary);
             cursor: pointer;
             padding: 5px;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+            }
+
             .mobile-menu-btn {
                 display: block;
             }
@@ -449,9 +571,9 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(255, 255, 255, 0.98);
+                background: var(--nav-bg-scrolled);
                 backdrop-filter: blur(20px);
-                box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 20px var(--shadow);
                 flex-direction: column;
                 padding: 20px 0;
                 gap: 20px;
@@ -498,6 +620,15 @@
     </style>
 </head>
 <body>
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <div class="toggle-slider">
+            <div class="toggle-icon">
+                <span id="toggleIcon">☀️</span>
+            </div>
+        </div>
+    </button>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
@@ -540,7 +671,7 @@
                 <div>
                     <h2 class="section-title">About Me</h2>
                     <div class="about-text">
-                        <p>Hey! I’m Tejas. I’m a senior studying Mechanical Engineering at UT Austin, graduating in 2026. I’m passionate about product design, with experience taking hardware from concept to production through design, validation, and manufacturing. My approach combines user centered thinking with technical feasibility to create innovative, manufacturable solutions.</p>
+                        <p>Hey! I'm Tejas. I'm a senior studying Mechanical Engineering at UT Austin, graduating in 2026. I'm passionate about product design, with experience taking hardware from concept to production through design, validation, and manufacturing. My approach combines user centered thinking with technical feasibility to create innovative, manufacturable solutions.</p>
                         <p>Outside of engineering, I enjoy playing tennis and competing in freestyle dance battles!</p>
                     </div>
                 </div>
@@ -613,88 +744,44 @@
     </section>
 
     <script>
-        // Project data with placeholder content
-        const projectData = {
-            healthWearable: {
-                title: "Health Wearable",
-                tags: ["Industrial Design", "IoT", "Health Tech", "Prototyping"],
-                description: "Designed and prototyped a next-generation health monitoring device with advanced sensors and intuitive user interface. Led the project from initial concept through manufacturing validation.",
-                challenge: "This is placeholder text for the challenge section. You can replace this with details about the specific challenges faced during the health wearable project, such as miniaturization constraints, battery life optimization, or sensor accuracy requirements.",
-                solution: "This is placeholder text for the solution section. You can describe the innovative approaches taken to solve the challenges, including design decisions, technical implementations, and user experience considerations that made this project successful.",
-                results: "This is placeholder text for the results section. You can include metrics, user feedback, manufacturing outcomes, or any measurable impact the project had on users or the business."
-            },
-            smartHome: {
-                title: "Connected Home Interface",
-                tags: ["UX Design", "Smart Home", "Interface Design", "User Research"],
-                description: "Developed an integrated smart home control system focusing on seamless user experience and aesthetic integration with modern home environments.",
-                challenge: "This is placeholder text for the challenge section. You can detail the complexity of creating a unified interface for multiple smart home devices, user adoption barriers, or technical integration challenges.",
-                solution: "This is placeholder text for the solution section. Describe your approach to simplifying complex smart home interactions, your design process, and how you addressed user needs through research and iteration.",
-                results: "This is placeholder text for the results section. Include user satisfaction metrics, adoption rates, or how the interface improved the overall smart home experience for users."
-            },
-            ecoDevice: {
-                title: "Eco-Friendly Consumer Device",
-                tags: ["Sustainability", "Materials", "Consumer Electronics", "Innovation"],
-                description: "Created a sustainable consumer electronics product using renewable materials and innovative manufacturing processes while maintaining premium user experience.",
-                challenge: "This is placeholder text for the challenge section. You can discuss the challenges of balancing sustainability goals with performance requirements, material sourcing difficulties, or cost considerations.",
-                solution: "This is placeholder text for the solution section. Explain your sustainable design approach, material selection process, and how you maintained product quality while meeting environmental goals.",
-                results: "This is placeholder text for the results section. Include environmental impact metrics, cost savings, user reception, or industry recognition for sustainable innovation."
-            },
-            mobileApp: {
-                title: "Companion Mobile App",
-                tags: ["Mobile Design", "UX/UI", "Accessibility", "Integration"],
-                description: "Designed and developed a companion mobile application with focus on intuitive navigation, accessibility, and seamless hardware integration.",
-                challenge: "This is placeholder text for the challenge section. You can describe challenges related to cross-platform compatibility, accessibility requirements, or complex hardware integration needs.",
-                solution: "This is placeholder text for the solution section. Detail your design process, accessibility considerations, and technical solutions that enabled smooth hardware-software integration.",
-                results: "This is placeholder text for the results section. Include app store ratings, user engagement metrics, accessibility compliance achievements, or successful hardware integration outcomes."
-            }
-        };
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const toggleIcon = document.getElementById('toggleIcon');
+        const html = document.documentElement;
 
-        // Function to show project details
-        function showProjectDetails(projectId) {
-            const project = projectData[projectId];
-            const modal = document.getElementById('projectModal');
-            
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalDescription').textContent = project.description;
-            document.getElementById('modalChallenge').textContent = project.challenge;
-            document.getElementById('modalSolution').textContent = project.solution;
-            document.getElementById('modalResults').textContent = project.results;
-            
-            // Populate tags
-            const tagsContainer = document.getElementById('modalTags');
-            tagsContainer.innerHTML = '';
-            project.tags.forEach(tag => {
-                const tagElement = document.createElement('span');
-                tagElement.className = 'tag';
-                tagElement.textContent = tag;
-                tagsContainer.appendChild(tagElement);
-            });
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateToggleIcon(currentTheme);
 
-        // Function to close project modal
-        function closeProjectModal() {
-            const modal = document.getElementById('projectModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-
-        // Close modal when clicking outside of it
-        window.addEventListener('click', function(event) {
-            const modal = document.getElementById('projectModal');
-            if (event.target === modal) {
-                closeProjectModal();
-            }
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
         });
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeProjectModal();
+        function updateToggleIcon(theme) {
+            if (theme === 'dark') {
+                toggleIcon.textContent = '🌙';
+            } else {
+                toggleIcon.textContent = '☀️';
             }
-        });
+        }
+
+        // Optional: Auto-detect system preference
+        if (!localStorage.getItem('theme')) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDark) {
+                html.setAttribute('data-theme', 'dark');
+                updateToggleIcon('dark');
+            }
+        }
+
+        // [Your existing JavaScript continues here...]
+        
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -755,7 +842,6 @@
                 rootMargin: '0px 0px -50px 0px'
             });
 
-            // Observe project cards and other elements
             document.querySelectorAll('.project-card, .skill').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
@@ -786,7 +872,8 @@
                 });
             });
         });
-         // Mobile menu toggle
+
+        // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
 
@@ -795,7 +882,6 @@
                 navLinks.classList.toggle('mobile-open');
             });
 
-            // Close mobile menu when clicking on a link
             navLinks.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
                     navLinks.classList.remove('mobile-open');
