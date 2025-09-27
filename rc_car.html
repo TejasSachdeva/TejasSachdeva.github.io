@@ -210,6 +210,16 @@
             transform: scale(1.02);
         }
 
+        .gallery-image.tall-image {
+            height: auto;  /* Allow flexible height */
+            min-height: 300px;  /* Minimum height */
+        }
+
+        .gallery-image.tall-image img {
+            height: auto;  /* Natural height */
+            object-fit: contain;
+        }
+
         /* Specifications Grid */
         .specs-grid {
             display: grid;
@@ -434,7 +444,7 @@
                     <h4 class="gallery-title">Figure 1: RC Car Front View</h4>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-image">
+                    <div class="gallery-image tall-image">
                         <img src="RC Side.png" alt="Steering Mechanism">
                     </div>
                     <h4 class="gallery-title">Figure 2: RC Car Side View</h4>
@@ -464,7 +474,7 @@
                     <h4 class="gallery-title">Figure 6: Pulley Hub Adapter FEA</h4>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-image">
+                    <div class="gallery-image tall-image">
                         <img src="RC Chart.png" alt="Steering Mechanism">
                     </div>
                     <h4 class="gallery-title">Figure 7: Fit Selection Reference Table</h4>
