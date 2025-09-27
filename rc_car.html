@@ -219,6 +219,9 @@
             height: auto;  /* Natural height */
             object-fit: contain;
         }
+        .gallery-image.wide-image {
+            grid-column: span 2;  /* Makes it span 2 columns in the grid */
+        }
 
         /* Specifications Grid */
         .specs-grid {
@@ -444,7 +447,7 @@
                     <h4 class="gallery-title">Figure 1: RC Car Front View</h4>
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-image tall-image">
+                    <div class="gallery-image wide-image">
                         <img src="RC Side.png" alt="Steering Mechanism">
                     </div>
                     <h4 class="gallery-title">Figure 2: RC Car Side View</h4>
